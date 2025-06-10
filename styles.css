@@ -1,0 +1,227 @@
+/* Estilos generales */
+:root {
+  --color-primario: #d4af37; /* Oro */
+  --color-secundario: #c0c0c0; /* Plata */
+  --color-fondo: #f9f9f9;
+  --color-texto: #333;
+  --color-borde: #e0e0e0;
+  --sombra: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transicion: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+/* Header */
+.header {
+  background-color: white;
+  box-shadow: var(--sombra);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-contenedor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--color-texto);
+}
+
+.logo span {
+  color: var(--color-primario);
+}
+
+.navegacion a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: var(--color-texto);
+  font-weight: 500;
+  transition: var(--transicion);
+}
+
+.navegacion a:hover {
+  color: var(--color-primario);
+}
+
+/* Sección de búsqueda y filtros */
+.buscador-contenedor, .filtros-contenedor {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.buscador-contenedor {
+  display: flex;
+  gap: 1rem;
+}
+
+#inputBuscar {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+#btnBuscar {
+  padding: 0 1.5rem;
+  background-color: var(--color-primario);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transicion);
+}
+
+#btnBuscar:hover {
+  background-color: #c99b1f;
+}
+
+.filtros-contenedor {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.filtro-grupo {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filtro-grupo label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.filtro-grupo select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Grid de productos */
+.joyas-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.joya-tarjeta {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  transition: var(--transicion);
+  display: flex;
+  flex-direction: column;
+}
+
+.joya-tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.joya-imagen {
+  width: 100%;
+ 
+  object-fit: cover;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.joya-contenido {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.joya-categoria {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.joya-titulo {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-texto);
+}
+
+.joya-precio {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primario);
+  margin: 0.5rem 0;
+}
+
+.joya-descripcion {
+  color: #666;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-contenedor {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .navegacion {
+    margin-top: 1rem;
+  }
+
+  .navegacion a {
+    margin: 0 0.5rem;
+  }
+
+  .joyas-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .buscador-contenedor {
+    flex-direction: column;
+  }
+
+  .filtros-contenedor {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .joyas-grid {
+    grid-template-columns: 1fr;
+  }
+}

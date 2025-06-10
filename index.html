@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+<head> <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de joyería elegante con gestión de productos">
+    <title>Catálogo de Joyería</title>
+    <link rel="stylesheet" href="styles.css">    
+</head><body>
+    <header class="header">
+        <div class="header-contenedor">
+            <a href="#" class="logo">Catálogo de <span>Joyeria</span></a>
+            <nav class="navegacion">
+                <a href="#">Inicio</a>
+                <a href="#catalogo">Catálogo</a>
+            </nav> </div>
+    </header><section class="buscador"> <div class="buscador-contenedor">
+            <input type="text" id="inputBuscar" placeholder="Buscar por nombre...">
+            <button id="btnBuscar">Buscar</button> </div></section>
+    <section class="filtros"><div class="filtros-contenedor"> <div class="filtro-grupo">
+                <label for="categoria">Categoría</label> <select id="categoria">
+                    <option value="todas">Todas</option>
+                    <option value="anillos">Anillos</option>
+                    <option value="cadenas">Cadenas</option>
+                    <option value="aretes">Aretes</option>
+                    <option value="pulceras">Pulceras</option>
+                    <option value="dijes">Dijes</option>
+                    <option value="tobillera">Tobillera</option>
+                     <option value="juegosduo">Duo de cadenas </option>
+                    <option value="juegos de dijes y arete">Juegos de Dijes y Arete</option>
+                </select></div><div class="filtro-grupo">
+            <label for="material">Material</label>
+                <select id="material">
+                    <option value="todos">Todos</option>
+                    <option value="oro laminado">Oro Laminado</option>
+                    <option value="plata">Plata</option>
+                    <option value="acero">Acero</option>
+                </select></div> </div></section>
+    <main class="joyas-grid" id="catalogo">
+    </main><script>
+        let productos = [
+        {nombre:"Corazon", categoria:"Aretes", material:"Plata", precio:210, imagen:"https://i.ibb.co/yFjBZKW0/IMG-20250320-WA0034-copia.jpg"},
+{nombre:"XV Años", categoria:"Aretes", material:"Plata", precio:230, imagen:"https://i.ibb.co/MxLw9FzQ/IMG-20250320-WA0033-copia.jpg"},
+{nombre:"Oso Largo", categoria:"Aretes", material:"Plata", precio:300, imagen:"https://i.ibb.co/3QvvH51/Whats-App-Image-2025-04-01-at-4-17-33-PM.jpg"},
+{nombre:"Oso", categoria:"Aretes", material:"Plata", precio:280, imagen:"https://i.ibb.co/sd7SkgmB/IMG-20250320-WA0058-copia.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Plata", precio:350, imagen:"https://i.ibb.co/v443tpXn/IMG-20250320-WA0049-copia.jpg"},
+{nombre:"Violadores De Corazon", categoria:"Aretes", material:"Plata", precio:280, imagen:"https://i.ibb.co/x83229nD/IMG-20250320-WA0050-copia.jpg"},
+{nombre:"Bola Amarilla", categoria:"Aretes", material:"Plata", precio:120, imagen:"https://i.ibb.co/6RFKK63J/Whats-App-Image-2025-04-01-at-4-17-33-PM-1.jpg"},
+{nombre:"Mickey Mouse", categoria:"Aretes", material:"Plata", precio:180, imagen:"https://i.ibb.co/cS7XR94z/Whats-App-Image-2025-04-01-at-4-17-34-PM.jpg"},
+{nombre:"Arracadas Cuadradas", categoria:"Aretes", material:"Plata", precio:260, imagen:"https://i.ibb.co/HD4PMW4h/Whats-App-Image-2025-04-01-at-4-17-38-PM-2.jpg"},
+{nombre:"Bola De Colores", categoria:"Aretes", material:"Plata", precio:250, imagen:"https://i.ibb.co/4wr49SGv/Whats-App-Image-2025-04-01-at-4-17-39-PM-2.jpg"},
+{nombre:"Violador de Angel y Diablito", categoria:"Aretes", material:"Plata", precio:200, imagen:"https://i.ibb.co/8n6sb3jS/Whats-App-Image-2025-04-01-at-4-17-39-PM-4.jpg"},
+{nombre:"Violador Corazon", categoria:"Aretes", material:"Plata", precio:220, imagen:"https://i.ibb.co/Ng2kLj0L/Whats-App-Image-2025-04-01-at-4-28-20-PM.jpg"},
+{nombre:"Torre Iffel", categoria:"Aretes", material:"Plata", precio:220, imagen:"https://i.ibb.co/FbSJgWWt/IMG-20250320-WA0041-copia.jpg"},
+{nombre:"Piedra", categoria:"Aretes", material:"Plata", precio:120, imagen:"https://i.ibb.co/rR98Ssmm/IMG-20250320-WA0043-copia.jpg"},
+{nombre:"Corazon", categoria:"Aretes", material:"Plata", precio:70, imagen:"https://i.ibb.co/XZjZcRJt/IMG-20250320-WA0039-copia.jpg"},
+{nombre:"Telefono Piedra", categoria:"Aretes", material:"Plata", precio:130, imagen:"https://i.ibb.co/RpPY2Fcf/IMG-20250330-WA0017-copia.jpg"},
+{nombre:"Moños", categoria:"Aretes", material:"Plata", precio:230, imagen:"https://i.ibb.co/QFfcKMyt/IMG-20250330-WA0021-copia.jpg"},
+{nombre:"Piedra Rojo", categoria:"Aretes", material:"Plata", precio:380, imagen:"https://i.ibb.co/Nd9ZvKbX/IMG-20250330-WA0023-copia.jpg"},
+{nombre:"Piedra", categoria:"Aretes", material:"Plata", precio:120, imagen:"https://i.ibb.co/m5HCYhrb/IMG-20250330-WA0022-copia.jpg"},
+{nombre:"Niña", categoria:"Aretes", material:"Plata", precio:220, imagen:"https://i.ibb.co/8LTVZbzK/IMG-20250330-WA0026-copia.jpg"},
+{nombre:"Angel", categoria:"Aretes", material:"Plata", precio:300, imagen:"https://i.ibb.co/s9K5zgm6/IMG-20250330-WA0029.jpg"},
+{nombre:"Mariposa", categoria:"Aretes", material:"Plata", precio:150, imagen:"https://i.ibb.co/PZrj8TFy/IMG-20250330-WA0028.jpg"},
+{nombre:"AtrapaSueños", categoria:"Aretes", material:"Plata", precio:320, imagen:"https://i.ibb.co/tMMGYtm2/IMG-20250330-WA0032.jpg"},
+{nombre:"Oso", categoria:"Aretes", material:"Plata", precio:150, imagen:"https://i.ibb.co/MyH2ynwz/IMG-20250330-WA0031.jpg"},
+{nombre:"Arracadas", categoria:"Aretes", material:"Plata", precio:200, imagen:"https://i.ibb.co/bgrn8Cn3/Whats-App-Image-2025-04-01-at-4-17-34-PM-2.jpg"},
+{nombre:"Colibri", categoria:"Aretes", material:"Plata", precio:200, imagen:"https://i.ibb.co/rRN97YCC/IMG-20250330-WA0033.jpg"},
+{nombre:"Libelula", categoria:"Aretes", material:"Plata", precio:230, imagen:"https://i.ibb.co/HmB1hDc/IMG-20250330-WA0036.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Plata", precio:350, imagen:"https://i.ibb.co/rR85fRz8/IMG-20250330-WA0053.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Plata", precio:350, imagen:"https://i.ibb.co/PZgj7dnJ/IMG-20250330-WA0052.jpg"},
+{nombre:"Largos Corazon", categoria:"Aretes", material:"Plata", precio:350, imagen:"https://i.ibb.co/1G53xd1n/IMG-20250330-WA0051.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Plata", precio:350, imagen:"https://i.ibb.co/DDjvqcpM/IMG-20250330-WA0055.jpg"},
+{nombre:"Corazon Largos", categoria:"Aretes", material:"Plata", precio:340, imagen:"https://i.ibb.co/PZgc22xW/IMG-20250330-WA0054.jpg"},
+{nombre:"Estrella Largos", categoria:"Aretes", material:"Plata", precio:350, imagen:"https://i.ibb.co/zT8Vd3jG/IMG-20250330-WA0056.jpg"},
+{nombre:"Transversales Flor Azul", categoria:"Aretes", material:"Plata", precio:300, imagen:"https://i.ibb.co/5gWSv0yv/IMG-20250330-WA0072.jpg"},
+{nombre:"Flor Transversal ", categoria:"Aretes", material:"Plata", precio:170, imagen:"https://i.ibb.co/CRMwXRY/IMG-20250330-WA0075.jpg"},
+{nombre:"Gato", categoria:"Aretes", material:"Plata", precio:220, imagen:"https://i.ibb.co/21XH200c/Gato-copia.jpg"},
+{nombre:"Corazon", categoria:"Dijes", material:"Plata", precio:200, imagen:"https://i.ibb.co/pB2bFsjD/IMG-20250326-181010-copia.jpg"},
+{nombre:"Estrella", categoria:"Dijes", material:"Plata", precio:210, imagen:"https://i.ibb.co/ksg82svY/IMG-20250326-180441-copia.jpg"},
+
+{nombre:"Tijera", categoria:"Dijes", material:"Plata", precio:120, imagen:"https://i.ibb.co/wFJJVJby/IMG-20250326-182132-copia.jpg"},
+{nombre:"Mickey Mouse", categoria:"Dijes", material:"Plata", precio:160, imagen:"https://i.ibb.co/F4s3gyL4/IMG-20250326-182052-copia.jpg"},
+{nombre:"Llave", categoria:"Dijes", material:"Plata", precio:120, imagen:"https://i.ibb.co/jmmM0Fm/IMG-20250326-182004-copia.jpg"},
+{nombre:"Caballo p/a hombre", categoria:"Dijes", material:"Plata", precio:170, imagen:"https://i.ibb.co/svH83s1g/IMG-20250326-180224-copia.jpg"},
+
+{nombre:"Corazon", categoria:"Dijes", material:"Plata", precio:280, imagen:"https://i.ibb.co/FL1mSv9m/IMG-20250326-180838-copia.jpg"},
+{nombre:"Santo", categoria:"Dijes", material:"Plata", precio:350, imagen:"https://i.ibb.co/93kT7PZg/IMG-20250326-180548-copia.jpg"},
+{nombre:"Santo", categoria:"Dijes", material:"Plata", precio:170, imagen:"https://i.ibb.co/fVysPXV1/IMG-20250326-180303-copia.jpg"},
+{nombre:"Santo", categoria:"Dijes", material:"Plata", precio:370, imagen:"https://i.ibb.co/mV42x4WM/IMG-20250326-180248-copia.jpg"},
+{nombre:"Raqueta", categoria:"Dijes", material:"Plata", precio:135, imagen:"https://i.ibb.co/xtNF7Zv9/IMG-20250320-WA0046-copia.jpg"},
+{nombre:"Niño y Niña", categoria:"Dijes", material:"Plata", precio:250, imagen:"https://i.ibb.co/5gN148sv/IMG-20250326-181412-copia.jpg"},
+{nombre:"Aguila", categoria:"Dijes", material:"Plata", precio:450, imagen:"https://i.ibb.co/0yMDpgw4/IMG-20250320-WA0037-copia.jpg"},
+{nombre:"Corazon", categoria:"Dijes", material:"Plata", precio:180, imagen:"https://i.ibb.co/yBftdYXJ/IMG-20250326-180911-copia.jpg"},
+{nombre:"Corazon Telefono", categoria:"Dijes", material:"Plata", precio:240, imagen:"https://i.ibb.co/0Rs7Mrq6/IMG-20250330-WA0078-copia.jpg"},
+{nombre:"Angel", categoria:"Dijes", material:"Plata", precio:230, imagen:"https://i.ibb.co/j9D1N9xR/IMG-20250330-WA0080.jpg"},
+{nombre:"Medicina", categoria:"Dijes", material:"Plata", precio:300, imagen:"https://i.ibb.co/mCs1tfhX/IMG-20250330-WA0082.jpg"},
+
+  {nombre: "Libelula", categoria: "Dijes", material: "Plata", precio: 150, imagen: "https://i.ibb.co/VWGvYS4w/IMG-20250524-174139-edit-655811144435762.jpg"},
+  {nombre: "Llave", categoria: "Dijes", material: "Plata", precio: 130, imagen: "https://i.ibb.co/9HxM4d74/IMG-20250524-173805-edit-655682393907530.jpg"},
+  {nombre: "Letra I", categoria: "Dijes", material: "Plata", precio: 160, imagen: "https://i.ibb.co/v6rB03Cn/IMG-20250524-173351-edit-655636985194527.jpg"},
+  {nombre: "Trompeta", categoria: "Dijes", material: "Plata", precio: 220, imagen: "https://i.ibb.co/PGqwYyjw/IMG-20250524-172353-edit-655552850404038.jpg"},
+  {nombre: "Bicicleta", categoria: "Dijes", material: "Plata", precio: 230, imagen: "https://i.ibb.co/9M1kpP5/IMG-20250524-171953-edit-655517656596395.jpg"},
+  {nombre: "Balon Pelota", categoria: "Dijes", material: "Plata", precio: 270, imagen: "https://i.ibb.co/bjCJTHWB/IMG-20250524-170728-edit-655421560524765.jpg"},
+  {nombre: "Llave", categoria: "Dijes", material: "Plata", precio: 200, imagen: "https://i.ibb.co/1tqS0q46/IMG-20250524-173852.jpg"},
+  {nombre: "Letra A", categoria: "Dijes", material: "Plata", precio: 160, imagen: "https://i.ibb.co/Pvt6cx3j/IMG-20250524-173451.jpg"},
+  {nombre: "Letra A", categoria: "Dijes", material: "Plata", precio: 250, imagen: "https://i.ibb.co/JgqdR2x/IMG-20250524-173443.jpg"},
+  {nombre: "Letra S", categoria: "Dijes", material: "Plata", precio: 160, imagen: "https://i.ibb.co/r22q42Nt/IMG-20250524-173400.jpg"},
+  {nombre: "Letra B", categoria: "Dijes", material: "Plata", precio: 150, imagen: "https://i.ibb.co/whjNmKRs/IMG-20250524-173342.jpg"},
+  {nombre: "Aguila", categoria: "Dijes", material: "Plata", precio: 0, imagen: "https://i.ibb.co/96p649R/IMG-20250524-172404.jpg"},
+  {nombre: "Jirafa", categoria: "Dijes", material: "Plata", precio: 180,imagen: "https://i.ibb.co/tTgGHXYB/IMG-20250524-172007.jpg"},
+///7////////////////////////////////////////////
+{nombre:"Piedras Rosa", categoria:"Juegos de Dijes y Arete", material:"Plata", precio:320, imagen:"https://i.ibb.co/5gtBDpsg/IMG-20250320-WA0038.jpg"},
+{nombre:"Infinito", categoria:"Juegos de Dijes y Arete", material:"Plata", precio:250, imagen:"https://i.ibb.co/XrZzwTBR/Whats-App-Image-2025-04-01-at-4-17-33-PM-2.jpg"},
+{nombre:"Flores", categoria:"Juegos de Dijes y Arete", material:"Plata", precio:300, imagen:"https://i.ibb.co/3mX0y6FF/Whats-App-Image-2025-04-01-at-4-17-36-PM-3.jpg"},
+{nombre:"Zanahoria y Conejo Niñ@", categoria:"Juegos de Dijes y Arete", material:"Plata", precio:90, imagen:"https://i.ibb.co/sphnpSjV/Whats-App-Image-2025-04-01-at-4-17-37-PM.jpg"},
+{nombre:"Piedras Largas", categoria:"Juegos de Dijes y Arete", material:"Plata", precio:300, imagen:"https://i.ibb.co/Txjftzmx/Whats-App-Image-2025-04-01-at-4-17-39-PM-1.jpg"},
+{nombre:"Cerezas", categoria:"Juegos de Dijes y Arete", material:"Plata", precio:250, imagen:"https://i.ibb.co/6JJ6Cm7s/Whats-App-Image-2025-04-01-at-4-17-39-PM-3.jpg"},
+{nombre:"Oso", categoria:"Juegos de Dijes y Arete", material:"Plata", precio:250, imagen:"https://i.ibb.co/VWktnmn6/Whats-App-Image-2025-04-01-at-4-17-40-PM-1.jpg"},
+{nombre:"Piedras", categoria:"Juegos de Dijes y Arete", material:"Plata", precio:300, imagen:"https://i.ibb.co/wN1dzx90/Whats-App-Image-2025-04-01-at-4-28-27-PM-1.jpg"},
+/////
+// 
+// 
+// 
+{nombre:"piedra #6", categoria:"Anillos", material:"Plata", precio:300, imagen:"https://i.ibb.co/jPGs1bzm/IMG-20250326-160037.jpg"},
+{nombre:"Flor #6", categoria:"Anillos", material:"Plata", precio:260, imagen:"https://i.ibb.co/Gfd9sq60/IMG-20250326-160611.jpg"},
+{nombre:"Piedra #8", categoria:"Anillos", material:"Plata", precio:240, imagen:"https://i.ibb.co/G37SFLhf/IMG-20250326-160933.jpg"},
+{nombre:"Piedra #6", categoria:"Anillos", material:"Plata", precio:160, imagen:"https://i.ibb.co/Dfz4LQMm/IMG-20250326-161041.jpg"},
+{nombre:"Bonito Diseño #9", categoria:"Anillos", material:"Plata", precio:450, imagen:"https://i.ibb.co/8DvFrvP3/IMG-20250326-161219.jpg"},
+{nombre:"Piedra Cuadrada #9", categoria:"Anillos", material:"Plata", precio:350, imagen:"https://i.ibb.co/bR16y762/IMG-20250326-161409.jpg"},
+{nombre:"Piedra Duo con Rojo #9.5", categoria:"Anillos", material:"Plata", precio:400, imagen:"https://i.ibb.co/8wrKKYY/IMG-20250326-161505.jpg"},
+{nombre:"Doble De Pareja #9", categoria:"Anillos", material:"Plata", precio:270, imagen:"https://i.ibb.co/RkW4KjSJ/IMG-20250326-161618.jpg"},
+{nombre:"Piedra #5", categoria:"Anillos", material:"Plata", precio:280, imagen:"https://i.ibb.co/nqSngq1R/IMG-20250326-161730.jpg"},
+{nombre:"Corazon #7.5", categoria:"Anillos", material:"Plata", precio:260, imagen:"https://i.ibb.co/rKCDqwny/IMG-20250326-161755.jpg"},
+{nombre:"Corazon #7", categoria:"Anillos", material:"Plata", precio:410, imagen:"https://i.ibb.co/YB5PSDhX/IMG-20250326-163011.jpg"},
+{nombre:"Serpiente", categoria:"Anillos", material:"Plata", precio:320, imagen:"https://i.ibb.co/gb7g0KsJ/IMG-20250326-163048.jpg"},
+{nombre:"Media Punta", categoria:"Anillos", material:"Plata", precio:150, imagen:"https://i.ibb.co/jP8V09wW/IMG-20250326-163656.jpg"},
+{nombre:"Hombre #11", categoria:"Anillos", material:"Plata", precio:240, imagen:"https://i.ibb.co/zThBYBkn/IMG-20250326-175205.jpg"},
+{nombre:"Hombre #12", categoria:"Anillos", material:"Plata", precio:460, imagen:"https://i.ibb.co/gMHCx8p2/IMG-20250326-175223.jpg"},
+
+{nombre:"Hombre #11", categoria:"Anillos", material:"Plata", precio:450, imagen:"https://i.ibb.co/d0V2gqhL/IMG-20250326-175402.jpg"},
+
+{nombre:"Flor #8", categoria:"Anillos", material:"Plata", precio:350, imagen:"https://i.ibb.co/gbbNzCBN/IMG-20250326-175628.jpg"},
+{nombre:"Tortuga #9.5", categoria:"Anillos", material:"Plata", precio:300, imagen:"https://i.ibb.co/0RBrVVNm/IMG-20250328-124731.jpg"},
+{nombre:"Piedra #8.5", categoria:"Anillos", material:"Plata", precio:250, imagen:"https://i.ibb.co/Xk8X6qPn/IMG-20250328-124917.jpg"},
+{nombre:"Cerdito #9.5", categoria:"Anillos", material:"Plata", precio:280, imagen:"https://i.ibb.co/kVG1g6n2/IMG-20250328-124943.jpg"},
+{nombre:"Serpiente #8", categoria:"Anillos", material:"Plata", precio:270, imagen:"https://i.ibb.co/GQGNKy8W/IMG-20250328-125029.jpg"},
+{nombre:"Corazon #8", categoria:"Anillos", material:"Plata", precio:300, imagen:"https://i.ibb.co/6cX20Trq/IMG-20250328-125055.jpg"},
+{nombre:"Piedra #8", categoria:"Anillos", material:"Plata", precio:270, imagen:"https://i.ibb.co/jkN8Bv51/IMG-20250328-125122.jpg"},
+{nombre:"Piedra De Colores #4", categoria:"Anillos", material:"Plata", precio:120, imagen:"https://i.ibb.co/8L01XQMW/IMG-20250328-125131.jpg"},
+{nombre:"Piedra #8", categoria:"Anillos", material:"Plata", precio:120, imagen:"https://i.ibb.co/4wHLS8Y2/IMG-20250328-125150.jpg"},
+{nombre:"Flor #8", categoria:"Anillos", material:"Plata", precio:330, imagen:"https://i.ibb.co/0y1KYfvY/IMG-20250328-125159.jpg"},
+{nombre:"Mariposa #8.5", categoria:"Anillos", material:"Plata", precio:230, imagen:"https://i.ibb.co/xShjXFq0/IMG-20250328-125212.jpg"},
+{nombre:"Semanario #8.5", categoria:"Anillos", material:"Plata", precio:500, imagen:"https://i.ibb.co/KxxGsNcv/IMG-20250328-125221.jpg"},
+{nombre:"Liso #10.5", categoria:"Anillos", material:"Plata", precio:350, imagen:"https://i.ibb.co/cXMWpM9X/IMG-20250328-125233.jpg"},
+{nombre:"Hombre #10", categoria:"Anillos", material:"Plata", precio:220, imagen:"https://i.ibb.co/d0PwSTJY/IMG-20250328-125239.jpg"},
+{nombre:"Piedras #8.5", categoria:"Anillos", material:"Plata", precio:220, imagen:"https://i.ibb.co/S40Ym5P9/IMG-20250328-125245.jpg"},
+{nombre:"Corazon #7", categoria:"Anillos", material:"Plata", precio:300, imagen:"https://i.ibb.co/C50xs4CK/IMG-20250328-125309.jpg"},
+{nombre:"Flor Filigrana #7.5", categoria:"Anillos", material:"Plata", precio:180, imagen:"https://i.ibb.co/JWZgxwh7/IMG-20250328-125317.jpg"},
+{nombre:"Piedra #5.5", categoria:"Anillos", material:"Plata", precio:270, imagen:"https://i.ibb.co/xSzSnLkB/IMG-20250328-125329.jpg"},
+{nombre:"Piedra #5.5", categoria:"Anillos", material:"Plata", precio:320, imagen:"https://i.ibb.co/0y8WwtKh/IMG-20250328-125345.jpg"},
+{nombre:"Corona #4", categoria:"Anillos", material:"Plata", precio:120, imagen:"https://i.ibb.co/byLzP15/IMG-20250328-125422.jpg"},
+{nombre:"Piedra #5.5", categoria:"Anillos", material:"Plata", precio:300, imagen:"https://i.ibb.co/pFpyw73/IMG-20250328-125557.jpg"},
+{nombre:"Corazon #8", categoria:"Anillos", material:"Plata", precio:300, imagen:"https://i.ibb.co/DD02YFDd/IMG-20250328-125802.jpg"},
+{nombre:"Infinito y Corazon #8", categoria:"Anillos", material:"Plata", precio:230, imagen:"https://i.ibb.co/MDF3syCW/IMG-20250328-125835.jpg"},
+{nombre:"Piedra #7.5", categoria:"Anillos", material:"Plata", precio:400, imagen:"https://i.ibb.co/m73djWj/IMG-20250328-130046.jpg"},
+{nombre:"Caballo p/a Hombre #10.5", categoria:"Anillos", material:"Plata", precio:600, imagen:"https://i.ibb.co/bMbw2TWT/IMG-20250326-175250.jpg"},
+{nombre:"Flor Grande Filigrana #8.5", categoria:"Anillos", material:"Plata", precio:530, imagen:"https://i.ibb.co/1GkPP0kY/IMG-20250330-WA0090.jpg"},
+
+
+  {nombre: "1", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/6dByKxp/IMG-20250608-133646-1-edit-14515173629409.jpg"},
+  {nombre: "2", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/tMY2yHL5/IMG-20250608-133712-1-edit-14534944727318.jpg"},
+  {nombre: "3", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Kj6zQ0kZ/IMG-20250608-133729-edit-14548733264136.jpg"},
+  {nombre: "4", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/RkmncHFg/IMG-20250608-133748-1.jpg"},
+  {nombre: "5", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/vCpnTqv7/IMG-20250608-133757-1-edit-14569027202305.jpg"},
+  {nombre: "6", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/YF2tMHn1/IMG-20250608-133813.jpg"},
+  {nombre: "7", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Rkvd1vzk/IMG-20250608-133820-1.jpg"},
+  {nombre: "8", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/pBgMCvCy/IMG-20250608-133829.jpg"},
+  {nombre: "9", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/4wH7c679/IMG-20250608-133838.jpg"},
+  {nombre: "10", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/TMYKvxvy/IMG-20250608-133846.jpg"},
+  {nombre: "11", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/vv6s4SkH/IMG-20250608-133855.jpg"},
+  {nombre: "12", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/C3XGbWqH/IMG-20250608-133910.jpg"},
+  {nombre: "13", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/S7R317jz/IMG-20250608-133921-1.jpg"},
+  {nombre: "14", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/KjnQQqNm/IMG-20250608-133931.jpg"},
+  {nombre: "15", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/8gnqLHx3/IMG-20250608-133940-1.jpg"},
+  {nombre: "16", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/KcYKqg3x/IMG-20250608-133950.jpg"},
+  {nombre: "17", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/cXQmfPrW/IMG-20250608-134007.jpg"},
+  {nombre: "18", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/h1D0stSL/IMG-20250608-134015-1.jpg"},
+  {nombre: "19", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/GmmsVd7/IMG-20250608-134025-1.jpg"},
+  {nombre: "20", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/m5RTBRm1/IMG-20250608-134034.jpg"},
+  {nombre: "21", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/tPCXXyY3/IMG-20250608-134051-1.jpg"},
+  {nombre: "22", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/h1rWYfyQ/IMG-20250608-134111-1-edit-14629853217282.jpg"},
+  {nombre: "23", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/hFDkbg92/IMG-20250608-134121.jpg"},
+  {nombre: "24", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/yFgZgqbm/IMG-20250608-134128.jpg"},
+  {nombre: "25", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/FrtG6vz/IMG-20250608-134135-1.jpg"},
+  {nombre: "26", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/5gKDzvsB/IMG-20250608-134149.jpg"},
+  {nombre: "27", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Rpg8Q96c/IMG-20250608-134227-1.jpg"},
+  {nombre: "28", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/bMTLPvBr/IMG-20250608-134242.jpg"},
+  {nombre: "29", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/DfbWWf8H/IMG-20250608-134515-1.jpg"},
+  {nombre: "30", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Wvrxzyc5/IMG-20250608-134544.jpg"},
+  {nombre: "Hombre Azul #11", categoria: "Anillos", material: "Plata", precio: 420, imagen: "https://i.ibb.co/7JKXhrTx/IMG-20250608-134612-edit-14706960544023.jpg"},
+  {nombre: "32", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Zp1xXPGP/IMG-20250608-134619.jpg"},
+  {nombre: "Hombre Rojo #11.5", categoria: "Anillos", material: "Plata", precio: 450, imagen: "https://i.ibb.co/B20tWQ9K/IMG-20250608-134626.jpg"},
+  {nombre: "34", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/202CrdQG/IMG-20250608-134642.jpg"},
+  {nombre: "35", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/TVhWkcG/IMG-20250608-134707-1.jpg"},
+  {nombre: "36", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/gFZmwz9J/IMG-20250608-134724-1.jpg"},
+  {nombre: "37", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/cKYKTQHq/IMG-20250608-134736-edit-14742402567864.jpg"},
+  {nombre: "38", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/CKSBzyK4/IMG-20250608-134809.jpg"},
+  {nombre: "39", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/93nHZ9vH/IMG-20250608-135102.jpg"},
+  {nombre: "ee", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/MkR9LwPh/IMG-20250608-135116-1.jpg"},
+  {nombre: "40", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/XkdMHpF0/IMG-20250608-135125-1.jpg"},
+  {nombre: "41", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/C5VSTtCW/IMG-20250608-135136-1.jpg"},
+  {nombre: "42", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/JjTZsyPk/IMG-20250608-135155.jpg"},
+  {nombre: "43", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/spp44HZL/IMG-20250608-135205.jpg"},
+  {nombre: "44", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/WWXpXxrT/IMG-20250608-135219.jpg"},
+  {nombre: "45", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Z6C7k35X/IMG-20250608-135227-1.jpg"},
+  {nombre: "46", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/svPFdtjB/IMG-20250608-135234.jpg"},
+  {nombre: "47", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Lzf7WXnr/IMG-20250608-135241.jpg"},
+  {nombre: "48", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/kVDCyY28/IMG-20250608-135248-1.jpg"},
+  {nombre: "49", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/pBBfkTc4/IMG-20250608-135257.jpg"},
+  {nombre: "50", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Vc7vT2hn/IMG-20250608-135429-1.jpg"},
+  {nombre: "51", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Y4xkDTFf/IMG-20250608-135439-1.jpg"},
+  {nombre: "52", categoria: "Anillos", material: "Plata", precio: 0, imagen: "https://i.ibb.co/d0X34TPL/IMG-20250608-135503.jpg"},
+  {nombre: "53", categoria: "Pulseras", material: "Plata", precio: 0, imagen: "https://i.ibb.co/G3k1cc3M/Whats-App-Image-2025-04-03-at-10-41-32-AM-1.jpg"},
+  {nombre: "54", categoria: "Pulseras", material: "Plata", precio: 0, imagen: "https://i.ibb.co/DDxyP6cd/Whats-App-Image-2025-04-03-at-10-41-40-AM-1.jpg"},
+//////////////////////////////////////////////////////////////////////////////////77777777777//////////////////////////////////////////
+{nombre:"Arracadas", categoria:"Aretes", material:"Oro Laminado", precio:130, imagen:"https://i.ibb.co/Y7r487tF/Whats-App-Image-2025-03-31-at-6-09-28-PM-3.jpg"},
+{nombre:"Fresas", categoria:"Aretes", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/fzPy72CZ/Whats-App-Image-2025-03-31-at-6-09-28-PM-2.jpg"},
+{nombre:"Corazon Morado", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/pvmKm18g/Whats-App-Image-2025-03-31-at-6-09-28-PM-1.jpg"},
+{nombre:"Rosas Rojas", categoria:"Aretes", material:"Oro Laminado", precio:110, imagen:"https://i.ibb.co/35876kYZ/Whats-App-Image-2025-03-31-at-6-09-28-PM.jpg"},
+{nombre:"Hello Kitty", categoria:"Aretes", material:"Oro Laminado", precio:90, imagen:"https://i.ibb.co/q8bcXdY/Whats-App-Image-2025-03-31-at-6-09-27-PM-3.jpg"},
+{nombre:"Libelula", categoria:"Aretes", material:"Oro Laminado", precio:110, imagen:"https://i.ibb.co/hRtd1bmp/Whats-App-Image-2025-03-31-at-6-09-27-PM-2.jpg"},
+{nombre:"Piedra Azul", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/b54VY8Gz/Whats-App-Image-2025-03-31-at-6-09-27-PM-1.jpg"},
+{nombre:"Corazon Rosa", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/MJvsP6x/Whats-App-Image-2025-03-31-at-6-09-27-PM.jpg"},
+{nombre:"Piedras", categoria:"Aretes", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/DfmhbkqN/Whats-App-Image-2025-03-31-at-6-09-26-PM-2.jpg"},
+{nombre:"Ojo Turco", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/SwMtxVdr/Whats-App-Image-2025-03-31-at-6-09-26-PM-1.jpg"},
+{nombre:"Flor Morada", categoria:"Aretes", material:"Oro Laminado", precio:180, imagen:"https://i.ibb.co/YB2F1VZm/Whats-App-Image-2025-03-31-at-6-09-26-PM.jpg"},
+{nombre:"Piedras", categoria:"Aretes", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/DH2X9D7M/Whats-App-Image-2025-03-31-at-6-09-25-PM-2.jpg"},
+{nombre:"Paleta", categoria:"Aretes", material:"Oro Laminado", precio:180, imagen:"https://i.ibb.co/93VBjxbL/Whats-App-Image-2025-03-31-at-6-09-25-PM-1.jpg"},
+{nombre:"Piedras", categoria:"Aretes", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/nsJnSLcR/Whats-App-Image-2025-03-31-at-6-09-25-PM.jpg"},
+{nombre:"Largos Piedra Rojo", categoria:"Aretes", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/j1x6xWf/Whats-App-Image-2025-03-31-at-6-09-24-PM-2.jpg"},
+{nombre:"Piedras", categoria:"Aretes", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/NgFwWcY0/Whats-App-Image-2025-03-31-at-6-09-24-PM-1.jpg"},
+{nombre:"Serpientes", categoria:"Aretes", material:"Oro Laminado", precio:350, imagen:"https://i.ibb.co/8LrJ31h9/Whats-App-Image-2025-03-31-at-6-09-24-PM.jpg"},
+{nombre:"Piedras", categoria:"Aretes", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/HDttgTQn/Whats-App-Image-2025-03-31-at-6-09-23-PM-2.jpg"},
+{nombre:"Piedras", categoria:"Aretes", material:"Oro Laminado", precio:170, imagen:"https://i.ibb.co/PzGnQT3J/Whats-App-Image-2025-03-31-at-6-09-23-PM-1.jpg"},
+{nombre:"Anclas", categoria:"Aretes", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/jZ5BbNtq/Whats-App-Image-2025-03-31-at-6-09-23-PM.jpg"},
+{nombre:"Piedras", categoria:"Aretes", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/SX5dNvM9/Whats-App-Image-2025-03-31-at-6-09-22-PM-1.jpg"},
+{nombre:"Bola", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/ZwckHvh/Whats-App-Image-2025-03-31-at-6-09-22-PM.jpg"},
+{nombre:"Piedras", categoria:"Aretes", material:"Oro Laminado", precio:170, imagen:"https://i.ibb.co/Xxr6j9yK/Whats-App-Image-2025-03-31-at-6-09-20-PM.jpg"},
+{nombre:"Piedras", categoria:"Aretes", material:"Oro Laminado", precio:110, imagen:"https://i.ibb.co/S4jrNmfj/Whats-App-Image-2025-03-31-at-6-09-17-PM-1.jpg"},
+{nombre:"Infantil", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/RknZjhz5/Whats-App-Image-2025-03-31-at-6-09-17-PM.jpg"},
+{nombre:"Arracada", categoria:"Aretes", material:"Oro Laminado", precio:180, imagen:"https://i.ibb.co/DPm8X417/Whats-App-Image-2025-03-31-at-6-09-16-PM.jpg"},
+{nombre:"Infantil", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/x8mCrHR4/Whats-App-Image-2025-03-31-at-6-09-15-PM-1.jpg"},
+{nombre:"Infantil", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/4wT8vR7R/Whats-App-Image-2025-03-31-at-6-09-15-PM.jpg"},
+{nombre:"Canasta de Corazon", categoria:"Aretes", material:"Oro Laminado", precio:130, imagen:"https://i.ibb.co/hRvS70SM/Whats-App-Image-2025-03-31-at-6-09-14-PM-1.jpg"},
+{nombre:"Santo", categoria:"Aretes", material:"Oro Laminado", precio:90, imagen:"https://i.ibb.co/B52jpmWp/Whats-App-Image-2025-03-31-at-6-09-14-PM.jpg"},
+{nombre:"Santo", categoria:"Aretes", material:"Oro Laminado", precio:160, imagen:"https://i.ibb.co/S7mt84Cv/Whats-App-Image-2025-03-31-at-6-09-13-PM.jpg"},
+{nombre:"Corazon", categoria:"Aretes", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/LzBq4JNQ/IMG-20250330-WA0057.jpg"},
+{nombre:"Corazon Grande", categoria:"Aretes", material:"Oro Laminado", precio:180, imagen:"https://i.ibb.co/jPmF3D5r/Whats-App-Image-2025-04-01-at-4-17-33-PM-3.jpg"},
+{nombre:"Corazones Largo", categoria:"Aretes", material:"Oro Laminado", precio:250, imagen:"https://i.ibb.co/d0Trrs3p/Whats-App-Image-2025-04-01-at-4-17-35-PM.jpg"},
+{nombre:"Bebe Oro", categoria:"Aretes", material:"Oro Laminado", precio:400, imagen:"https://i.ibb.co/6RvdCwKL/Whats-App-Image-2025-04-01-at-4-17-35-PM-1.jpg"},
+{nombre:"Pavoreal", categoria:"Aretes", material:"Oro Laminado", precio:540, imagen:"https://i.ibb.co/nNLR2Cqq/Whats-App-Image-2025-04-01-at-4-17-35-PM-2.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/23LWS2wC/Whats-App-Image-2025-04-01-at-4-17-35-PM-4.jpg"},
+{nombre:"Transversal", categoria:"Aretes", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/hFfgxW2L/Whats-App-Image-2025-04-01-at-4-17-36-PM-2.jpg"},
+{nombre:"Mariposa/ Flor", categoria:"Aretes", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/gbbwnZ09/Whats-App-Image-2025-04-01-at-4-17-37-PM-2.jpg"},
+{nombre:"Arracada", categoria:"Aretes", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/hJdSJDSj/Whats-App-Image-2025-04-01-at-4-17-38-PM.jpg"},
+{nombre:"Hojas Largos", categoria:"Aretes", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/RTZwgfbR/Whats-App-Image-2025-04-01-at-4-17-38-PM-1.jpg"},
+{nombre:"Bolsa Largos", categoria:"Aretes", material:"Oro Laminado", precio:200, imagen:"https://i.ibb.co/Kp8tTJP1/Whats-App-Image-2025-04-01-at-4-17-39-PM.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Oro Laminado", precio:175, imagen:"https://i.ibb.co/fYMxzm9S/Whats-App-Image-2025-04-01-at-4-17-40-PM.jpg"},
+{nombre:"Arracadas", categoria:"Aretes", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/ymXSngM1/Whats-App-Image-2025-04-01-at-4-17-40-PM-2.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Oro Laminado", precio:199, imagen:"https://i.ibb.co/4g8M128j/Whats-App-Image-2025-04-01-at-4-28-21-PM-1.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/gLyhN5hd/Whats-App-Image-2025-04-01-at-4-28-22-PM.jpg"},
+{nombre:"Bolsa De Santos", categoria:"Aretes", material:"Oro Laminado", precio:180, imagen:"https://i.ibb.co/DHJL40nG/Whats-App-Image-2025-04-01-at-4-28-22-PM-2.jpg"},
+{nombre:"Violadores", categoria:"Aretes", material:"Oro Laminado", precio:130, imagen:"https://i.ibb.co/VWSgDcqm/Whats-App-Image-2025-04-01-at-4-28-23-PM-1.jpg"},
+{nombre:"Pluma Largos", categoria:"Aretes", material:"Oro Laminado", precio:180, imagen:"https://i.ibb.co/M5sRr6ZS/Whats-App-Image-2025-04-01-at-4-28-24-PM-1.jpg"},
+{nombre:"Oro Bebe", categoria:"Aretes", material:"Oro Laminado", precio:450, imagen:"https://i.ibb.co/Q3pBcqHH/Whats-App-Image-2025-04-01-at-4-28-24-PM-2.jpg"},
+{nombre:"Flor Grande", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/Y464xxCK/Whats-App-Image-2025-04-01-at-4-28-26-PM-2.jpg"},
+{nombre:"Flor Largos", categoria:"Aretes", material:"Oro Laminado", precio:100, imagen:"https://i.ibb.co/PvPDjnsW/Whats-App-Image-2025-04-01-at-4-28-27-PM.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Oro Laminado", precio:160, imagen:"https://i.ibb.co/WvcZBHFP/Whats-App-Image-2025-04-01-at-4-28-27-PM-2.jpg"},
+{nombre:"Largos", categoria:"Aretes", material:"Oro Laminado", precio:200, imagen:"https://i.ibb.co/VyG8zL0/Whats-App-Image-2025-04-01-at-4-28-28-PM.jpg"},
+
+  {nombre: "1", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/QvZxQ8Lj/IMG-20250608-121444.jpg"},
+  {nombre: "2", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/sp29LTdQ/IMG-20250608-121500-edit-13893827724177.jpg"},
+  {nombre: "3", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/PZ4vXHQg/IMG-20250608-121522-edit-13905014407506.jpg"},
+  {nombre: "4", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/nqBkMYZC/IMG-20250608-121804-1-edit-13923853821926.jpg"},
+  {nombre: "5", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/yxz3C68/IMG-20250608-122109-edit-13939879854785.jpg"},
+  {nombre: "6", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/MDqrh3Kr/IMG-20250608-122155-1-edit-13962753880766.jpg"},
+  {nombre: "ee", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/zc58wdp/IMG-20250608-122249-1-edit-13981597645550.jpg"},
+  {nombre: "8", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/Q3Bc2G8g/IMG-20250608-122353-1-edit-14006976793822.jpg"},
+  {nombre: "9", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/QvZxQ8Lj/IMG-20250608-121444.jpg"},
+  {nombre: "10", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/sp29LTdQ/IMG-20250608-121500-edit-13893827724177.jpg"},
+  {nombre: "11", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/PZ4vXHQg/IMG-20250608-121522-edit-13905014407506.jpg"},
+  {nombre: "12", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/nqBkMYZC/IMG-20250608-121804-1-edit-13923853821926.jpg"},
+  {nombre: "13", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/yxz3C68/IMG-20250608-122109-edit-13939879854785.jpg"},
+  {nombre: "14", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/MDqrh3Kr/IMG-20250608-122155-1-edit-13962753880766.jpg"},
+  {nombre: "15", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/zc58wdp/IMG-20250608-122249-1-edit-13981597645550.jpg"},
+  {nombre: "16", categoria: "Aretes", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/Q3Bc2G8g/IMG-20250608-122353-1-edit-14006976793822.jpg"},
+
+{nombre:"Arracada Chica", categoria:"Aretes", material:"Oro Laminado", precio:130, imagen:"https://i.ibb.co/1JnGQKxp/Whats-App-Image-2025-04-01-at-4-28-28-PM-2.jpg"},
+{nombre:"Semanario Mariposa #7", categoria:"Anillos", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/0yWNxRDK/Whats-App-Image-2025-04-01-at-4-17-34-PM-1.jpg"},
+{nombre:"Flor #9.5", categoria:"Anillos", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/gM22SSJr/Whats-App-Image-2025-04-01-at-4-17-34-PM-3.jpg"},
+{nombre:"Piedra #7", categoria:"Anillos", material:"Oro Laminado", precio:180, imagen:"https://i.ibb.co/HJ42znQ/Whats-App-Image-2025-04-01-at-4-28-21-PM.jpg"},
+{nombre:"Serpiente #7.5", categoria:"Anillos", material:"Oro Laminado", precio:250, imagen:"https://i.ibb.co/b57mNd3p/Whats-App-Image-2025-04-01-at-4-17-36-PM.jpg"},
+{nombre:"Flor #10", categoria:"Anillos", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/ZzDrf2fM/Whats-App-Image-2025-04-01-at-4-28-23-PM-2.jpg"},
+{nombre:"Libelula #8", categoria:"Anillos", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/JwQF2TwY/Whats-App-Image-2025-04-01-at-4-28-24-PM.jpg"},
+{nombre:"Corazon #8.5", categoria:"Anillos", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/BHJgRh63/Whats-App-Image-2025-04-01-at-4-28-26-PM-1.jpg"},
+{nombre:"Piedra #8", categoria:"Anillos", material:"Oro Laminado", precio:120, imagen:"https://i.ibb.co/pvKKxcc1/Whats-App-Image-2025-04-01-at-4-28-26-PM.jpg"},
+{nombre:"Flor De Colores #8", categoria:"Anillos", material:"Oro Laminado", precio:180, imagen:"https://i.ibb.co/9HsD0M5b/Whats-App-Image-2025-04-01-at-4-28-28-PM-3.jpg"},
+{nombre:"Flor #8", categoria:"Anillos", material:"Oro Laminado", precio:150, imagen:"https://i.ibb.co/cXgZFmp4/Whats-App-Image-2025-04-01-at-4-28-27-PM-3.jpg"},
+{nombre:"Corazon", categoria:"Cadenas", material:"Plata", precio:330, imagen:"https://i.ibb.co/QvKBNk6f/Whats-App-Image-2025-04-01-at-4-28-22-PM-1.jpg"},
+{nombre:"Infinito", categoria:"Pulceras", material:"Acero", precio:150, imagen:"https://i.ibb.co/KphfnwdW/Whats-App-Image-2025-04-01-at-4-28-23-PM.jpg"},
+{nombre: "Buho 17cm", categoria: "Pulceras", material: "Oro Laminado", precio: 250, imagen: "https://i.ibb.co/q3fWz9cg/Whats-App-Image-2025-04-03-at-10-41-30-AM.jpg"},
+{nombre: "Esclava 14cm", categoria: "Pulceras", material: "Oro Laminado", precio: 260, imagen: "https://i.ibb.co/4gJNZg6V/Whats-App-Image-2025-04-03-at-10-41-31-AM-1.jpg"},
+{nombre: "Virgen 22cm", categoria: "Pulceras", material: "Oro Laminado", precio: 230, imagen: "https://i.ibb.co/hRJ4sBfC/Whats-App-Image-2025-04-03-at-10-41-37-AM-1.jpg"},
+{nombre: "Mariposa 26cm Ajustable", categoria: "Pulceras", material: "Oro Laminado", precio: 250, imagen: "https://i.ibb.co/ZzBNpBQg/Whats-App-Image-2025-04-03-at-10-41-41-AM-1.jpg"},
+{nombre: "Serpiente 16cm", categoria: "Pulceras", material: "Oro Laminado", precio: 230, imagen: "https://i.ibb.co/2YsF9njP/Whats-App-Image-2025-04-03-at-10-41-41-AM-2.jpg"},
+{nombre: "Perlas 21cm", categoria: "Pulceras", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/W4kPsgN4/Whats-App-Image-2025-04-03-at-10-41-43-AM-1.jpg"},
+{nombre: "Pulcera 18cm", categoria: "Pulceras", material: "Oro Laminado", precio: 250 , imagen: "https://i.ibb.co/qYb8pxTZ/Whats-App-Image-2025-04-03-at-10-41-43-AM.jpg"},
+{nombre: "Delfin 17cm", categoria: "Pulceras", material: "Oro Laminado", precio: 230, imagen: "https://i.ibb.co/n8ZTkrTq/Whats-App-Image-2025-04-03-at-10-41-44-AM-1.jpg"},
+{nombre: "Delfin 17cm", categoria: "Pulceras", material: "Oro Laminado", precio: 180, imagen: "https://i.ibb.co/fGD5sNn9/Whats-App-Image-2025-04-03-at-10-41-46-AM.jpg"},
+{nombre: "Esclava 17cm", categoria: "Pulceras", material: "Oro Laminado", precio: 150, imagen: "https://i.ibb.co/wNjrksdx/Whats-App-Image-2025-04-03-at-10-41-48-AM-1.jpg"},
+{nombre: "Pulcera 17cm", categoria: "Pulceras", material: "Oro Laminado", precio: 150, imagen: "https://i.ibb.co/m5jdGcMW/Whats-App-Image-2025-04-03-at-10-41-52-AM.jpg"},
+{nombre: "Pulcera 14cm", categoria: "Pulceras", material: "Oro Laminado", precio: 100, imagen: "https://i.ibb.co/MDXCcqNB/Whats-App-Image-2025-04-03-at-10-41-54-AM-1.jpg"},
+{nombre: "Delgado 21cm", categoria: "Pulceras", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/2342BzNQ/Whats-App-Image-2025-04-03-at-10-42-40-AM-1.jpg"},
+{nombre: "Pescado", categoria: "Dijes", material: "Oro Laminado", precio: 160, imagen: "https://i.ibb.co/4RwJ9B03/Whats-App-Image-2025-04-03-at-10-41-31-AM-2.jpg"},
+{nombre: "Piedra Cuadrado ", categoria: "Dijes", material: "Oro Laminado", precio: 140, imagen: "https://i.ibb.co/fVmX0656/Whats-App-Image-2025-04-03-at-10-41-31-AM.jpg"},
+{nombre: "Oso", categoria: "Dijes", material: "Oro Laminado", precio: 190, imagen: "https://i.ibb.co/JWFTfwZv/Whats-App-Image-2025-04-03-at-10-41-32-AM-2.jpg"},
+{nombre: "Circulo Piedra", categoria: "Dijes", material: "Oro Laminado", precio: 90, imagen: "https://i.ibb.co/rK0mdBQm/Whats-App-Image-2025-04-03-at-10-41-33-AM-1.jpg"},
+{nombre: "Circulo Piedra", categoria: "Dijes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/spXzD799/Whats-App-Image-2025-04-03-at-10-41-34-AM-1.jpg"},
+{nombre: "Bailarina", categoria: "Dijes", material: "Oro Laminado", precio: 150, imagen: "https://i.ibb.co/yBbNcmw6/Whats-App-Image-2025-04-03-at-10-41-35-AM-2.jpg"},
+{nombre: "Corazon", categoria: "Dijes", material: "Oro Laminado", precio: 150, imagen: "https://i.ibb.co/V0yDY2rB/Whats-App-Image-2025-04-03-at-10-41-36-AM-2.jpg"},
+{nombre: " Buho", categoria: "Dijes", material: "Oro Laminado", precio: 180, imagen: "https://i.ibb.co/1JYszFHk/Whats-App-Image-2025-04-03-at-10-41-36-AM.jpg"},
+{nombre: "Llave", categoria: "Dijes", material: "Oro Laminado", precio: 130, imagen: "https://i.ibb.co/WNYmhTjV/Whats-App-Image-2025-04-03-at-10-41-38-AM-1.jpg"},
+{nombre: "Corazon Virgen", categoria: "Dijes", material: "Oro Laminado", precio: 150, imagen: "https://i.ibb.co/23G5hnFQ/Whats-App-Image-2025-04-03-at-10-41-39-AM.jpg"},
+{nombre: "Circulo Santo", categoria: "Dijes", material: "Oro Laminado", precio: 200, imagen: "https://i.ibb.co/tM5PTmFz/Whats-App-Image-2025-04-03-at-10-41-42-AM.jpg"},
+{nombre: "Unicornio", categoria: "Dijes", material: "Oro Laminado", precio: 99, imagen: "https://i.ibb.co/w9vNv59/Whats-App-Image-2025-04-03-at-10-41-44-AM.jpg"},
+{nombre: "Mano Turca 2", categoria: "Dijes", material: "Oro Laminado", precio: 130, imagen: "https://i.ibb.co/XPbLp4S/Whats-App-Image-2025-04-03-at-10-41-45-AM.jpg"},
+{nombre: "Mariposa", categoria: "Dijes", material: "Oro Laminado", precio: 160, imagen: "https://i.ibb.co/67XLNNB4/Whats-App-Image-2025-04-03-at-10-41-48-AM.jpg"},
+{nombre: "Corazon", categoria: "Dijes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/2YHjgQgx/Whats-App-Image-2025-04-03-at-10-41-52-AM-1.jpg"},
+{nombre: "Corazon", categoria: "Dijes", material: "Oro Laminado", precio: 150, imagen: "https://i.ibb.co/VWdJkWjF/Whats-App-Image-2025-04-03-at-10-41-53-AM.jpg"},
+{nombre: "Piedra Roja", categoria: "Juegos De Dijes Y Arete", material: "Oro Laminado", precio: 280, imagen: "https://i.ibb.co/bg0b73LT/Whats-App-Image-2025-04-03-at-10-41-32-AM.jpg"},
+{nombre: "Corazon", categoria: "Juegos De Dijes Y Arete", material: "Oro Laminado", precio: 320, imagen: "https://i.ibb.co/991Qnn4g/Whats-App-Image-2025-04-03-at-10-41-36-AM-1.jpg"},
+{nombre: "Mariposa", categoria: "Juegos De Dijes Y Arete", material: "Oro Laminado", precio: 340, imagen: "https://i.ibb.co/RTx6zjvN/Whats-App-Image-2025-04-03-at-10-41-39-AM-1.jpg"},
+{nombre: "Alas de Angel", categoria: "Juegos De Dijes Y Arete", material: "Oro Laminado", precio: 160, imagen: "https://i.ibb.co/Q3WM8s9m/Whats-App-Image-2025-04-03-at-10-41-40-AM.jpg"},
+{nombre: "Delfin", categoria: "Juegos De Dijes Y Arete", material: "Oro Laminado", precio: 260, imagen: "https://i.ibb.co/r2nsMxzn/Whats-App-Image-2025-04-03-at-10-41-41-AM.jpg"},
+
+
+  {nombre: "Arracada", categoria: "Aretes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/20KysWCn/IMG-20250524-160555-edit-654905488879285.jpg"},
+  {nombre: "Flor Largos", categoria: "Aretes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/Z6V3G157/IMG-20250524-160539-edit-654891416777051.jpg"},
+  {nombre: "Violadores Mariposa ", categoria: "Aretes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/nshRRtFc/IMG-20250524-160518-edit-654864926731644.jpg"},
+  {nombre: "Flor", categoria: "Aretes", material: "Oro Laminado", precio: 110, imagen: "https://i.ibb.co/VcZzQHPG/IMG-20250524-160133-edit-654831840185511.jpg"},
+  {nombre: "Gaviotas", categoria: "Aretes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/QjXNYqv8/IMG-20250524-160123-edit-654815682909319.jpg"},
+  {nombre: "Hojas de colores", categoria: "Aretes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/mKPBRxn/IMG-20250524-160115-edit-654791775561516.jpg"},
+  {nombre: "Piedras", categoria: "Aretes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/qY5rS0PR/IMG-20250524-160107-edit-654779471189177.jpg"},
+  {nombre: "Flor", categoria: "Aretes", material: "Oro Laminado", precio: 100, imagen: "https://i.ibb.co/btftn5B/IMG-20250524-155957-edit-654745342435752.jpg"},
+  {nombre: "Flor", categoria: "Aretes", material: "Oro Laminado", precio: 100, imagen: "https://i.ibb.co/B2yCySHs/IMG-20250524-155942-edit-654719455423627.jpg"},
+  {nombre: "Corazon Lambada", categoria: "Aretes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/F4k1J2XV/IMG-20250524-155918-edit-654706107129361.jpg"},
+  {nombre: "Flor Negra", categoria: "Aretes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/8Lcp1ycc/IMG-20250524-174655.jpg"},
+  {nombre: "Flor ", categoria: "Aretes", material: "Oro Laminado", precio: 100, imagen: "https://i.ibb.co/bRFvWDm4/IMG-20250524-174634.jpg"},
+  
+  {nombre: "Flor", categoria: "Aretes", material: "Oro Laminado", precio: 100, imagen: "https://i.ibb.co/5WpxB7nd/IMG-20250524-160210-edit-654852315738107.jpg"},
+  {nombre: "Corona Ojo Turco", categoria: "Aretes", material: "Oro Laminado", precio: 100, imagen: "https://i.ibb.co/S7BRz95p/IMG-20250524-160141-edit-654842972499152.jpg"},
+  {nombre: "Colibrí", categoria: "Aretes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/V0gqbd9v/IMG-20250524-160055-edit-654768656364858.jpg"},
+  {nombre: "Colibrí", categoria: "Aretes", material: "Oro Laminado", precio: 100, imagen: "https://i.ibb.co/kbk4f3y/IMG-20250524-160034-edit-654758202107883.jpg"},
+
+
+//////////////////////////////////////////
+
+  {nombre: "Piedra bebé", categoria: "Aretes", material: "Plata", precio: 50, imagen: "https://i.ibb.co/Vp5CMhV8/IMG-20250524-174218-edit-655828280001120.jpg"},
+  {nombre: "Piedra Bebé", categoria: "Aretes", material: "Plata", precio: 75, imagen: "https://i.ibb.co/RGPWNF8Q/IMG-20250524-174120-edit-655781887286971.jpg"},
+  {nombre: "Arracada", categoria: "Aretes", material: "Plata", precio: 320, imagen: "https://i.ibb.co/Tx1QSWL1/IMG-20250524-173752-edit-655672077693367.jpg"},
+  {nombre: "Oso Rojo", categoria: "Aretes", material: "Plata", precio: 150, imagen: "https://i.ibb.co/0pjJmnWB/IMG-20250524-173742-edit-655662146305819.jpg"},
+  {nombre: "Arracada", categoria: "Aretes", material: "Plata", precio: 480, imagen: "https://i.ibb.co/spGxCjb0/IMG-20250524-173731-edit-655652480592542.jpg"},
+  {nombre: "Chica Superpoderosa", categoria: "Aretes", material: "Plata", precio: 120, imagen: "https://i.ibb.co/LD5d0Njr/IMG-20250524-172508-edit-655583058680172.jpg"},
+  {nombre: "Graduado Gorro", categoria: "Dijes", material: "Plata", precio: 160, imagen: "https://i.ibb.co/Myykhtqj/IMG-20250524-172414-edit-655572746386634.jpg"},
+  {nombre: "Piedras", categoria: "Aretes", material: "Plata", precio: 130, imagen: "https://i.ibb.co/yFS01530/IMG-20250524-171907-edit-655508523786086.jpg"},
+  {nombre: "Piedra Roja", categoria: "Aretes", material: "Plata", precio: 80, imagen: "https://i.ibb.co/HLyQh4tP/IMG-20250524-171724-edit-655496401410674.jpg"},
+  {nombre: "Raton y Gato", categoria: "Aretes", material: "Plata", precio: 130, imagen: "https://i.ibb.co/CKb7jRY8/IMG-20250524-171601-edit-655481468709065.jpg"},
+  {nombre: "Corazon Azul", categoria: "Aretes", material: "Plata", precio: 150, imagen: "https://i.ibb.co/BVHLZPRG/IMG-20250524-171156-edit-655470185833913.jpg"},
+  {nombre: "Bola", categoria: "Aretes", material: "Plata", precio: 150, imagen: "https://i.ibb.co/MD9BXVSq/IMG-20250524-171148-edit-655460308502406.jpg"},
+  {nombre: "Perla", categoria: "Aretes", material: "Plata", precio: 150, imagen: "https://i.ibb.co/twgr1Dnj/IMG-20250524-171025-edit-655441809635330.jpg"},
+  {nombre: "Piolin", categoria: "Aretes", material: "Plata", precio: 70, imagen: "https://i.ibb.co/4w9yQcJM/IMG-20250524-170904-edit-655432500692990.jpg"},
+  {nombre: "Lambada Piedra ", categoria: "Aretes", material: "Plata", precio: 320, imagen: "https://i.ibb.co/HpDqpXs2/IMG-20250524-170237-edit-655356741106925.jpg"},
+  {nombre: "Enfermera", categoria: "Aretes", material: "Plata", precio: 150, imagen: "https://i.ibb.co/d4NKkVnJ/IMG-20250524-170209-edit-655332157070007.jpg"},
+  {nombre: "Arracada Chica", categoria: "Aretes", material: "Plata", precio: 190, imagen: "https://i.ibb.co/twt5Lr1W/IMG-20250524-174400.jpg"},
+  {nombre: "Dormilonas", categoria: "Aretes", material: "Plata", precio: 90, imagen: "https://i.ibb.co/5XtBQwfX/IMG-20250524-174127.jpg"},
+  {nombre: "Piedras", categoria: "Aretes", material: "Plata", precio: 60, imagen: "https://i.ibb.co/g83mD7t/IMG-20250524-172622.jpg"},
+  {nombre: "Bolitas", categoria: "Aretes", material: "Plata", precio: 160, imagen: "https://i.ibb.co/fdsQqFhv/IMG-20250524-172551.jpg"},
+  {nombre: "Peppa Pig", categoria: "Aretes", material: "Plata", precio: 120, imagen: "https://i.ibb.co/236QHcgc/IMG-20250524-172544.jpg"},
+  {nombre: "Dormilonas", categoria: "Aretes", material: "Plata", precio: 90, imagen: "https://i.ibb.co/PG7Bv3KL/IMG-20250524-172500.jpg"},
+  {nombre: "Piedras", categoria: "Aretes", material: "Plata", precio: 120, imagen: "https://i.ibb.co/Y4GnPXjZ/IMG-20250524-172342.jpg"},
+  {nombre: "Bolita", categoria: "Aretes", material: "Plata", precio: 200, imagen: "https://i.ibb.co/Gfjwv7nj/IMG-20250524-172336.jpg"},
+  {nombre: "Corazon", categoria: "Aretes", material: "Plata", precio: 140, imagen: "https://i.ibb.co/21hTVYhM/IMG-20250524-171857.jpg"},
+  {nombre: "Piedra", categoria: "Aretes", material: "Plata", precio: 70, imagen: "https://i.ibb.co/TDYMgV0W/IMG-20250524-171715.jpg"},
+  {nombre: "Corazon", categoria: "Aretes", material: "Plata", precio: 230, imagen: "https://i.ibb.co/0jFrFQ9K/IMG-20250524-171553.jpg"},
+{nombre:"Violador ", categoria: "Aretes", material: "Plata", precio: 320, imagen: "https://i.ibb.co/rRCm0ffK/Whats-App-Image-2025-04-03-at-10-41-34-AM-2.jpg"},
+{nombre: "Dormilonas 2", categoria: "Aretes", material: "Acero", precio: 40, imagen: "https://i.ibb.co/v70y75T/Whats-App-Image-2025-04-03-at-10-40-34-AM.jpg"},
+{nombre: "Arracada 3cm", categoria: "Aretes", material: "Plata", precio: 320, imagen: "https://i.ibb.co/qLJxfJtv/Whats-App-Image-2025-04-03-at-10-41-37-AM-2.jpg"},
+{nombre: "Transversales Rojo Flor", categoria: "Aretes", material: "Plata", precio: 300, imagen: "https://i.ibb.co/pB77dThG/Whats-App-Image-2025-04-03-at-10-41-54-AM.jpg"},
+{nombre: "Arracadas 2.5cm", categoria: "Aretes", material: "Plata", precio: 300, imagen: "https://i.ibb.co/xtXddYGp/Whats-App-Image-2025-04-03-at-10-41-33-AM.jpg"},
+{nombre: "Transversal Flecha", categoria: "Aretes", material: "Plata", precio: 230, imagen: "https://i.ibb.co/Q3XZWjm6/Whats-App-Image-2025-04-03-at-10-41-34-AM.jpg"},
+{nombre: "Arracadas 2.5cm", categoria: "Aretes", material: "Plata", precio: 300, imagen: "https://i.ibb.co/CpdrrVCW/Whats-App-Image-2025-04-03-at-10-41-35-AM-1.jpg"},
+{nombre: "Trasnversales Corazon", categoria: "Aretes", material: "Plata", precio: 280, imagen: "https://i.ibb.co/YB7sNfy6/Whats-App-Image-2025-04-03-at-10-41-35-AM.jpg"},
+{nombre: "Arracadas 2.5cm", categoria: "Aretes", material: "Plata", precio: 360, imagen: "https://i.ibb.co/n88jSScf/Whats-App-Image-2025-04-03-at-10-41-38-AM-2.jpg"},
+{nombre: "Transversal Mickey Mouse", categoria: "Aretes", material: "Plata", precio: 250, imagen: "https://i.ibb.co/nqNxHbHz/Whats-App-Image-2025-04-03-at-10-41-47-AM.jpg"},
+{nombre: "Transversal Estrella", categoria: "Aretes", material: "Plata", precio: 250, imagen: "https://i.ibb.co/G4vgBpX7/Whats-App-Image-2025-04-03-at-10-41-49-AM.jpg"},
+{nombre: "Pajaro", categoria: "Aretes", material: "Plata", precio: 75, imagen: "https://i.ibb.co/tTFGf7h2/Whats-App-Image-2025-04-03-at-10-40-25-AM-1.jpg"},
+{nombre: "Piedra", categoria: "Aretes", material: "Plata", precio: 90, imagen: "https://i.ibb.co/F4RtKP9x/Whats-App-Image-2025-04-03-at-10-40-25-AM.jpg"},
+{nombre: "Corazon", categoria: "Aretes", material: "Plata", precio: 120, imagen: "https://i.ibb.co/wftb9LR/Whats-App-Image-2025-04-03-at-10-40-26-AM-1.jpg"},
+{nombre: "Cruz", categoria: "Aretes", material: "Plata", precio: 65, imagen: "https://i.ibb.co/tpv8NgDB/Whats-App-Image-2025-04-03-at-10-40-26-AM-2.jpg"},
+{nombre: "Pescado", categoria: "Aretes", material: "Plata", precio: 150, imagen: "https://i.ibb.co/rKJtqPGf/Whats-App-Image-2025-04-03-at-10-40-27-AM.jpg"},
+{nombre: "Piedra", categoria: "Aretes", material: "Plata", precio: 60, imagen: "https://i.ibb.co/RptGb4sM/Whats-App-Image-2025-04-03-at-10-40-28-AM-1.jpg"},
+{nombre: "Mariposa", categoria: "Aretes", material: "Plata", precio: 120, imagen: "https://i.ibb.co/RGf6j8qK/Whats-App-Image-2025-04-03-at-10-40-28-AM.jpg"},
+{nombre: "Angel", categoria: "Aretes", material: "Plata", precio: 160, imagen: "https://i.ibb.co/hF2Y2NQC/Whats-App-Image-2025-04-03-at-10-40-29-AM-1.jpg"},
+{nombre: "Hello Kitty Angel y Demonio", categoria: "Aretes", material: "Plata", precio: 120, imagen: "https://i.ibb.co/0RzvcHwW/Whats-App-Image-2025-04-03-at-10-40-29-AM.jpg"},
+{nombre: "Piedra", categoria: "Aretes", material: "Plata", precio: 85, imagen: "https://i.ibb.co/tP3cVFDX/Whats-App-Image-2025-04-03-at-10-40-30-AM-1.jpg"},
+{nombre: "Ovulo", categoria: "Aretes", material: "Plata", precio: 85, imagen: "https://i.ibb.co/NdQ1Yvhf/Whats-App-Image-2025-04-03-at-10-40-30-AM.jpg"},
+{nombre: "Mariposa", categoria: "Aretes", material: "Plata", precio: 120, imagen: "https://i.ibb.co/m5tbKRws/Whats-App-Image-2025-04-03-at-10-40-31-AM-1.jpg"},
+{nombre: "Manos", categoria: "Aretes", material: "Plata", precio: 90, imagen: "https://i.ibb.co/RT3hqrPQ/Whats-App-Image-2025-04-03-at-10-40-31-AM-2.jpg"},
+{nombre: "Frida Khalo", categoria: "Aretes", material: "Plata", precio: 80, imagen: "https://i.ibb.co/zWgkqnxt/Whats-App-Image-2025-04-03-at-10-40-31-AM.jpg"},
+{nombre: "Manzana", categoria: "Aretes", material: "Plata", precio: 130, imagen: "https://i.ibb.co/TxRRDWyp/Whats-App-Image-2025-04-03-at-10-40-32-AM-1.jpg"},
+{nombre: "Mariposa", categoria: "Aretes", material: "Plata", precio: 65, imagen: "https://i.ibb.co/0brwNGz/Whats-App-Image-2025-04-03-at-10-40-32-AM.jpg"},
+{nombre: "Telefono", categoria: "Aretes", material: "Plata", precio: 140, imagen: "https://i.ibb.co/1GNFgzcf/Whats-App-Image-2025-04-03-at-10-40-33-AM-1.jpg"},
+{nombre: "Piedra", categoria: "Aretes", material: "Plata", precio: 110, imagen: "https://i.ibb.co/2YPFjFYZ/Whats-App-Image-2025-04-03-at-10-40-33-AM.jpg"},
+{nombre: "Estetica", categoria: "Aretes", material: "Plata", precio: 150, imagen: "https://i.ibb.co/WvV470Fk/Whats-App-Image-2025-04-03-at-10-40-34-AM-1.jpg"},
+{nombre: "Luna", categoria: "Aretes", material: "Plata", precio: 120, imagen: "https://i.ibb.co/DdpVbW7/Whats-App-Image-2025-04-03-at-10-40-34-AM-2.jpg"},
+{nombre: "Telefono Corazon", categoria: "Aretes", material: "Plata", precio: 140, imagen: "https://i.ibb.co/prZFBM9Y/Whats-App-Image-2025-04-03-at-10-40-35-AM-1.jpg"},
+{nombre: "Cerdo", categoria: "Aretes", material: "Plata", precio: 90, imagen: "https://i.ibb.co/NdZmLR41/Whats-App-Image-2025-04-03-at-10-40-35-AM.jpg"},
+{nombre: "Gato", categoria: "Aretes", material: "Plata", precio: 90, imagen: "https://i.ibb.co/4nNybrPj/Whats-App-Image-2025-04-03-at-10-40-36-AM.jpg"},
+{nombre: "Corazon ", categoria: "Juegos De Dijes Y Arete", material: "Plata", precio:250,  imagen: "https://i.ibb.co/tpjhYxtp/Whats-App-Image-2025-04-03-at-10-40-26-AM.jpg"},
+{nombre: "Filigrana Flor", categoria: "Juegos De Dijes Y Arete", material: "Plata", precio: 850, imagen: "https://i.ibb.co/d0rMpjJm/Whats-App-Image-2025-04-03-at-10-41-37-AM.jpg"},
+{nombre: "Peppa Pig", categoria: "Juegos De Dijes Y Arete", material: "Plata", precio: 300, imagen: "https://i.ibb.co/6RTTL2hf/Whats-App-Image-2025-04-03-at-10-41-40-AM-2.jpg"},
+{nombre: "Corazon ", categoria: "Juegos De Dijes Y Arete", material: "Plata", precio: 500, imagen: "https://i.ibb.co/H0ZjtbF/Whats-App-Image-2025-04-03-at-10-41-45-AM-1.jpg"},
+{nombre: "Mostacho ", categoria: "Juegos De Dijes Y Arete", material: "Plata", precio: 240, imagen: "https://i.ibb.co/FqJSkcP4/Whats-App-Image-2025-04-03-at-10-41-53-AM-1.jpg"},
+{nombre: "Estetoscopio ", categoria: "Dijes", material: "Plata", precio: 300, imagen: "https://i.ibb.co/ym9d4FHx/Whats-App-Image-2025-04-03-at-10-41-51-AM.jpg"},
+{nombre: "Rosario 63cm", categoria: "Cadenas", material: "Acero", precio: 150, imagen: "https://i.ibb.co/nMdym2n0/Whats-App-Image-2025-04-03-at-10-41-38-AM.jpg"},
+////////777/////////////////////////////////
+
+  {nombre: "Esclava", categoria: "Pulceras", material: "Plata", precio: 600, imagen: "https://i.ibb.co/mrHyvPjq/IMG-20250524-170421-edit-655378316159886.jpg"},
+  {nombre: "Cadena corazon 40 cm", categoria: "Cadenas", material: "Plata", precio: 220_280, imagen: "https://i.ibb.co/60mP5pq7/IMG-20250524-164225-edit-655311379676474.jpg"},
+  {nombre: "Cadena corazon 36cm", categoria: "Cadenas", material: "Plata", precio: 220_250, imagen: "https://i.ibb.co/4ZPzNF3C/IMG-20250524-164201-edit-655298952188301.jpg"},
+  {nombre: "Cadena corazon 44cm", categoria: "Cadenas", material: "Plata", precio: 120_170, imagen: "https://i.ibb.co/NdLgwM0P/IMG-20250524-164138-edit-655289718613930.jpg"},
+  {nombre: "Cadena tijera 38cm", categoria: "Cadenas", material: "Plata", precio: 160_120, imagen: "https://i.ibb.co/9kVrGztX/IMG-20250524-163840-edit-655273461222894.jpg"},
+  {nombre: "Cadena estrella 50cm", categoria: "Cadenas", material: "Plata", precio: 300_210, imagen: "https://i.ibb.co/R4C4GxRx/IMG-20250524-163635-edit-655263657671388.jpg"},
+  {nombre: "Cadena medico 43cm", categoria: "Cadenas", material: "Plata", precio: 420_300, imagen: "https://i.ibb.co/gMHjxvWN/IMG-20250524-163559-edit-655189057837145.jpg"},
+  {nombre: "Cadena chancla 54cm", categoria: "Cadenas", material: "Plata", precio: 745-250, imagen: "https://i.ibb.co/KjGcXF7W/IMG-20250524-163540-edit-655179884119597.jpg"},
+  {nombre: "Cadena santo 48cm", categoria: "Cadenas", material: "Plata", precio: 630_350, imagen: "https://i.ibb.co/RkLZRT8d/IMG-20250524-163039-edit-655169354951372.jpg"},
+  {nombre: "Cadena mariposa 49cm", categoria: "Cadenas", material: "Plata", precio: 630_380, imagen: "https://i.ibb.co/Z1kQbG0b/IMG-20250524-163008-edit-655158745018719.jpg"},
+  {nombre: "Cadena angel 52cm", categoria: "Cadenas", material: "Plata", precio: 610-260, imagen: "https://i.ibb.co/k6rdZfVv/IMG-20250524-162938-edit-655115365424361.jpg"},
+  {nombre: "Cadena flor 48cm", categoria: "Cadenas", material: "Plata", precio: 270_120, imagen: "https://i.ibb.co/WW16fMFL/IMG-20250524-162503-edit-655106590820875.jpg"},
+  {nombre: "Cadena angel  49cm", categoria: "Cadenas", material: "Plata", precio: 350_230, imagen: "https://i.ibb.co/pjMXxsKT/IMG-20250524-162432-edit-655096544718587.jpg"},
+  {nombre: "Cadena buho 52cm", categoria: "Cadenas", material: "Plata", precio: 745_260, imagen: "https://i.ibb.co/xqg13nFK/IMG-20250524-162359-edit-655069790793389.jpg"},
+  {nombre: "Cadena angel 52cm", categoria: "Cadenas", material: "Plata", precio: 300_250, imagen: "https://i.ibb.co/XrgDgYSG/IMG-20250524-162325-edit-655043534796732.jpg"},
+  {nombre: "Cadena mickey mouse 70cm", categoria: "Cadenas", material: "Plata", precio: 1800_160, imagen: "https://i.ibb.co/jc1D3BJ/IMG-20250524-161856-edit-655020777102522.jpg"},
+  {nombre: "Cadena atrapasueños 58cm", categoria: "Cadenas", material: "Plata", precio: 380_260, imagen: "https://i.ibb.co/XZ52ktND/IMG-20250524-161832-edit-654970770564416.jpg"},
+  {nombre: "Cadena tortuga  53cm ", categoria: "Cadenas", material: "Plata", precio: 300_320, imagen: "https://i.ibb.co/NggPxBkm/IMG-20250524-161735-edit-654959025461087.jpg"},
+
+   {nombre: "1", categoria: "Cadenas", material: "Plata", precio: 0, imagen: "https://i.ibb.co/fdFDBNRD/IMG-20250608-132114-1-edit-14394255710288.jpg"},
+  {nombre: "2", categoria: "Cadenas", material: "Plata", precio: 0, imagen: "https://i.ibb.co/zWMZLT5C/IMG-20250608-132208-1-edit-14403683711431.jpg"},
+  {nombre: "ee", categoria: "Cadenas", material: "Plata", precio: 0, imagen: "https://i.ibb.co/R46f6ycr/IMG-20250608-132242-edit-14412913257833.jpg"},
+  {nombre: "4", categoria: "Cadenas", material: "Plata", precio: 0, imagen: "https://i.ibb.co/kg7Zm6pL/IMG-20250608-132357-edit-14429006736786.jpg"},
+  {nombre: "5", categoria: "Cadenas", material: "Plata", precio: 0, imagen: "https://i.ibb.co/Txth2Hm7/IMG-20250608-132420-edit-14449486286778.jpg"},
+  {nombre: "6", categoria: "Cadenas", material: "Plata", precio: 0, imagen: "https://i.ibb.co/PZPtK2Nb/IMG-20250608-132945-edit-14467191336302.jpg"},
+///////////////////////////////////77
+
+   {nombre: "1", categoria: "Cadenas", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/rRs96V0n/IMG-20250608-125856-edit-14333988522082.jpg"},
+  {nombre: "Cadena 52cm", categoria: "Cadenas", material: "Oro Laminado", precio: 200_200, imagen: "https://i.ibb.co/SXdv9Vfb/IMG-20250608-125813-edit-14316716539433.jpg"},
+  {nombre: "cadena 53cm ", categoria: "Cadenas", material: "Oro Laminado", precio: 220_99, imagen: "https://i.ibb.co/6cCbByGJ/IMG-20250608-125735-1-edit-14305698941312.jpg"},
+  {nombre: "4", categoria: "Cadenas", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/SwzWsYBf/IMG-20250608-125715-edit-14290109729755.jpg"},
+  {nombre: "5", categoria: "Cadenas", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/YFqDtvVX/IMG-20250608-125641-edit-14263449286745.jpg"},
+  {nombre: "Cadena 58cm", categoria: "Cadenas", material: "Oro Laminado", precio: 300_150, imagen: "https://i.ibb.co/gZCBrrTh/IMG-20250608-125605-1-edit-14242303977742.jpg"},
+  {nombre: "ee", categoria: "Cadenas", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/MDWDHtHV/IMG-20250608-124252-edit-14223549768374.jpg"},
+  {nombre: "Cadena 40cm", categoria: "Cadenas", material: "Oro Laminado", precio: 150_120, imagen: "https://i.ibb.co/F4MrMxFH/IMG-20250608-124221-edit-14211713310202.jpg"},
+  {nombre: "9", categoria: "Cadenas", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/xtcXzZ44/IMG-20250608-124147-edit-14189940543700.jpg"},
+  {nombre: "Cadena 44cm", categoria: "Cadenas", material: "Oro Laminado", precio: 120_90, imagen: "https://i.ibb.co/BHNFK004/IMG-20250608-123957-1-edit-14178216186465.jpg"},
+  {nombre: "11", categoria: "Cadenas", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/MD646Kmr/IMG-20250608-123849-edit-14165753381990.jpg"},
+  {nombre: "12", categoria: "Cadenas", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/RTGg9WtZ/IMG-20250608-123746-1-edit-14079739625617.jpg"},
+  {nombre: "13", categoria: "Cadenas", material: "Oro Laminado", precio: 0, imagen: "https://i.ibb.co/DHSbmv2p/IMG-20250608-123601-1-edit-14020639608556.jpg"},
+
+
+{nombre: "Corazones 52cm", categoria: "Cadenas", material: "Oro Laminado", precio: 220, imagen: "https://i.ibb.co/qLm5Kxzs/Whats-App-Image-2025-04-03-at-10-42-41-AM.jpg"},
+{nombre: "Delgado 52cm", categoria: "Cadenas", material: "Oro Laminado", precio: 130, imagen: "https://i.ibb.co/DfVR7tQf/Whats-App-Image-2025-04-03-at-10-42-37-AM.jpg"},
+{nombre: "Grueso 58 cm", categoria: "Cadenas", material: "Oro Laminado", precio: 300, imagen: "https://i.ibb.co/twCGpb93/Whats-App-Image-2025-04-03-at-10-42-43-AM.jpg"},
+{nombre: "Torsal 52cm", categoria: "Cadenas", material: "Oro Laminado", precio: 220, imagen: "https://i.ibb.co/vCH6hnV6/Whats-App-Image-2025-04-03-at-10-42-44-AM-1.jpg"},
+{nombre: "Torsal 46cm", categoria: "Cadenas", material: "Oro Laminado", precio: 280, imagen: "https://i.ibb.co/1t2YsNmP/Whats-App-Image-2025-04-03-at-10-42-44-AM.jpg"},
+{nombre: "Delgado 52cm", categoria: "Cadenas", material: "Oro Laminado", precio: 130, imagen: "https://i.ibb.co/pBc6FFbn/Whats-App-Image-2025-04-03-at-10-42-47-AM-1.jpg"},
+{nombre: "Delgado 50cm", categoria: "Cadenas", material: "Oro Laminado", precio: 200, imagen: "https://i.ibb.co/0RY3FF57/Whats-App-Image-2025-04-03-at-10-42-33-AM.jpg"},
+{nombre: "Santo 36cm", categoria: "Cadenas", material: "Oro Laminado", precio: 250, imagen: "https://i.ibb.co/nNzZwWZn/Whats-App-Image-2025-04-03-at-10-42-34-AM-1.jpg"},
+{nombre: "Delgado 60cm", categoria: "Cadenas", material: "Oro Laminado", precio: 180, imagen: "https://i.ibb.co/DfVR7tQf/Whats-App-Image-2025-04-03-at-10-42-37-AM.jpg"},
+{nombre: "Grueso 52cm", categoria: "Cadenas", material: "Oro Laminado", precio: 540, imagen: "https://i.ibb.co/4gYVmZBn/Whats-App-Image-2025-04-03-at-10-42-39-AM-2.jpg"},
+/////////////////////
+
+  {nombre: "Estrella De Israel", categoria: "Dijes", material: "Plata", precio: 200, imagen: "https://i.ibb.co/WWpFp9fS/IMG-20250524-174348-edit-655873040157457.jpg"},
+  {nombre: "Santo", categoria: "Dijes", material:"Plata", precio: 170, imagen: "https://i.ibb.co/GQpyyb2m/IMG-20250524-173840-edit-655766595488488.jpg"},
+  {nombre: "Letra D", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/XfHPdGTZ/IMG-20250524-173047-edit-655603776941466.jpg"},
+  {nombre: "Piedra", categoria: "Dijes", material: "Acero", precio: 90, imagen: "https://i.ibb.co/tPmtg36f/IMG-20250524-171136-edit-655452596399649.jpg"},
+ 
+  {nombre: "Alas", categoria: "Dijes", material: "Acero", precio: 80, imagen: "https://i.ibb.co/svrnjVxq/IMG-20250524-170610-edit-655406811637687.jpg"},
+  {nombre: "Letra A", categoria: "Dijes", material: "Oro Laminado", precio: 120, imagen: "https://i.ibb.co/21wCWfRm/IMG-20250524-170539-edit-655397241013837.jpg"},
+  {nombre: "Virgen", categoria: "Dijes", material: "Oro Laminado", precio: 170, imagen: "https://i.ibb.co/fGdXQRdX/IMG-20250524-174112.jpg"},
+  {nombre: "Virgen", categoria: "Dijes", material: "Plata", precio: 250, imagen: "https://i.ibb.co/mVkHN10Z/IMG-20250524-173826.jpg"},
+  //////////////
+  {nombre: "Avion", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/vxNB0ssQ/IMG-20250524-173211.jpg"},
+  {nombre: "Llave", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/zVsHwmRF/IMG-20250524-173203.jpg"},
+  {nombre: "Corazon", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/HLZ8BjgG/IMG-20250524-173156.jpg"},
+  {nombre: "Virgen", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/99MbLV56/IMG-20250524-173146.jpg"},
+  {nombre: "Letra I", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/fd8NCVrn/IMG-20250524-173134.jpg"},
+  {nombre: "Letra P", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/9m9RXGtq/IMG-20250524-173125.jpg"},
+  {nombre: "Letra B", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/JFg5F5nD/IMG-20250524-173110.jpg"},
+  {nombre: "Letra C", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/CKDdGkWv/IMG-20250524-173056.jpg"},
+  {nombre: "Flor", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/PfBj8cZ/IMG-20250524-173037.jpg"},
+  {nombre: "Letra B", categoria: "Dijes", material: "Acero", precio: 60, imagen: "https://i.ibb.co/0V8Jkk3M/IMG-20250524-173027.jpg"},
+
+
+  {nombre: "1", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/3mWSYjY6/IMG-20250608-130425-edit-14344608189734.jpg"},
+{nombre: "2", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/xt5VT7nf/IMG-20250608-130457-1-edit-14361683954259.jpg"},
+{nombre: "3", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/VYnvq6Kr/IMG-20250608-141411-edit-15199950446752.jpg"},
+{nombre: "4", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/nN3Kr4wM/IMG-20250608-141425-1-edit-15215298229298.jpg"},
+{nombre: "5", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Zpq44ywG/IMG-20250608-141433-1-edit-15228582914554.jpg"},
+{nombre: "6", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/SXBz9Drh/IMG-20250608-143741-1.jpg"},
+{nombre: "7", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/9H1FNM1L/IMG-20250608-143752-1.jpg"},
+{nombre: "8", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/B5CPsjSS/IMG-20250608-143802.jpg"},
+{nombre: "ee5", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/dRyBw77/IMG-20250608-143802-2.jpg"},
+{nombre: "10", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/svWfCDH2/IMG-20250608-143810-1.jpg"},
+{nombre: "11", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/vCMvwM7r/IMG-20250608-143817-1.jpg"},
+{nombre: "12", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/rG9VZBg9/IMG-20250608-143825.jpg"},
+{nombre: "13", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/2Yd3D6C6/IMG-20250608-143832-1.jpg"},
+{nombre: "14", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/fKt0h4n/IMG-20250608-143839-1.jpg"},
+{nombre: "15", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/ksrswyc1/IMG-20250608-143848-edit-15377822932413.jpg"},
+{nombre: "16", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/WW8pNz60/IMG-20250608-143856-1.jpg"},
+{nombre: "17", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/zVKFHQvf/IMG-20250608-143907.jpg"},
+{nombre: "18", categoria: "Dijes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/kFsSGMh/IMG-20250608-143919-edit-15392339523241.jpg"},
+  
+  {nombre: "1", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/PZ6H61zq/IMG-20250608-142721.jpg"},
+{nombre: "2", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/mC7WDbzD/IMG-20250608-142741-1.jpg"},
+{nombre: "3", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/CsJC9t2x/IMG-20250608-142800-1-edit-15339093784928.jpg"},
+{nombre: "4", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/n8CCSrbZ/IMG-20250608-142809-edit-15347673493727.jpg"},
+{nombre: "5", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/CKVqctLt/IMG-20250608-144431-1.jpg"},
+{nombre: "e4e", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/PsrSGDy3/IMG-20250608-144441-1.jpg"},
+{nombre: "7", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Hf0ssJ6y/IMG-20250608-144451-1.jpg"},
+{nombre: "8", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/cXQBDWb8/IMG-20250608-144500-1.jpg"},
+{nombre: "9", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/LDJTCcDh/IMG-20250608-144514-1.jpg"},
+{nombre: "10", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/WNHRVJwW/IMG-20250608-144547-1.jpg"},
+{nombre: "11", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/xKWDzPnP/IMG-20250608-144612-1-edit-15517314092204.jpg"},
+{nombre: "12", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/JRwPfj60/IMG-20250608-144636-3.jpg"},
+  
+ {nombre: "1", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/C3ytDtry/IMG-20250608-135308.jpg"},
+{nombre: "2", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/2018MGBb/IMG-20250608-135322.jpg"},
+{nombre: "3", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/q3Y5b5Tp/IMG-20250608-135332.jpg"},
+{nombre: "4", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/0pRKxNxV/IMG-20250608-135350.jpg"},
+{nombre: "5", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/vFBFXZQ/IMG-20250608-135358.jpg"},
+{nombre: "6", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/F4qVm695/IMG-20250608-135405.jpg"},
+{nombre: "7", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/YB3tJmPN/IMG-20250608-135418-1.jpg"},
+{nombre: "8", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Fk2nK8d8/IMG-20250608-135541.jpg"},
+{nombre: "9", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/LX8CRn0d/IMG-20250608-135701-1.jpg"},
+{nombre: "10", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/N25swDsQ/IMG-20250608-140024.jpg"},
+{nombre: "11", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/1fpW7XgH/IMG-20250608-140031-1.jpg"},
+{nombre: "12", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/wGQ22s0/IMG-20250608-140053-1.jpg"},
+{nombre: "e3e", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/YFv6v3Z8/IMG-20250608-140103.jpg"},
+{nombre: "14", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/0vbKTHT/IMG-20250608-140111.jpg"},
+{nombre: "15", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Ldwxvm0p/IMG-20250608-140121-1.jpg"},
+{nombre: "16", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/xKxvBwQ9/IMG-20250608-140127-1-edit-14847352685741.jpg"},
+{nombre: "17", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/WNqnt5k4/IMG-20250608-140142-1.jpg"},
+{nombre: "18", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/MygP2QDC/IMG-20250608-140151-1.jpg"},
+{nombre: "19", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/dwMk2b2w/IMG-20250608-140159-edit-14875635841667.jpg"},
+{nombre: "20", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/XxRZZfXT/IMG-20250608-140214-edit-14923484353993.jpg"},
+{nombre: "21", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/tM4pMm5J/IMG-20250608-140235-1.jpg"},
+{nombre: "22", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/nMRY2YLD/IMG-20250608-140244.jpg"},
+{nombre: "23", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/CKbz9wQb/IMG-20250608-140254-1-edit-14952937652679.jpg"},
+{nombre: "24", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/CsbbBMrB/IMG-20250608-140320-1.jpg"},
+{nombre: "25", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/zh4Gz7kS/IMG-20250608-140330.jpg"},
+{nombre: "26", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/G4FSF8bs/IMG-20250608-140341-edit-14990797277405.jpg"},
+{nombre: "27", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/8LLB7gWj/IMG-20250608-140402-1.jpg"},
+{nombre: "28", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/RkjtqFyF/IMG-20250608-140524.jpg"},
+{nombre: "29", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/3mhpXw30/IMG-20250608-140532.jpg"},
+{nombre: "e2e", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/GfM9cbLK/IMG-20250608-140544-1.jpg"},
+{nombre: "31", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/M5VJK7w9/IMG-20250608-140558.jpg"},
+{nombre: "32", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/3y2bTfVk/IMG-20250608-140610-1.jpg"},
+{nombre: "33", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/LhRxT3wJ/IMG-20250608-140617.jpg"},
+{nombre: "34", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/ZpZS8cNP/IMG-20250608-140622.jpg"},
+{nombre: "35", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/QF1RyWbd/IMG-20250608-140628.jpg"},
+{nombre: "36", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/7tXcLwpF/IMG-20250608-140635-1.jpg"},
+{nombre: "37", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/6RYytk3q/IMG-20250608-140642.jpg"},
+{nombre: "38", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/LDx2ZJzg/IMG-20250608-140649.jpg"},
+{nombre: "39", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/k62QFyw0/IMG-20250608-140657-1.jpg"},
+{nombre: "40", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/zhLGQ3zN/IMG-20250608-140705-1.jpg"},
+{nombre: "41", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Z1xpRt3z/IMG-20250608-140721-1.jpg"},
+{nombre: "42", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/pgdyZ8B/IMG-20250608-140730.jpg"},
+{nombre: "43", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Wj5fQ9L/IMG-20250608-140736-1-edit-15079813719089.jpg"},
+{nombre: "44", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/mV4jPHSH/IMG-20250608-140758-edit-15124077343031.jpg"},
+{nombre: "45", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/cXkttFzw/IMG-20250608-140805.jpg"},
+{nombre: "e1e", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/V0ZbHbqj/IMG-20250608-140812-1-edit-15151444745729.jpg"},
+{nombre: "47", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/PvvmWR8q/IMG-20250608-140818.jpg"},
+{nombre: "48", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/JwJ180hG/IMG-20250608-140823-1.jpg"},
+{nombre: "49", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/j9Zt7BPw/IMG-20250608-140830-edit-15182624352852.jpg"},
+{nombre: "50", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/bR5qMr4S/IMG-20250608-141941-1.jpg"},
+{nombre: "51", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/gLMgmxwC/IMG-20250608-141948-1.jpg"},
+{nombre: "52", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/TDNxS7L7/IMG-20250608-141957-1.jpg"},
+{nombre: "53", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/5XJ9fJcY/IMG-20250608-142003.jpg"},
+{nombre: "54", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/prn2Z1yd/IMG-20250608-142009-1.jpg"},
+{nombre: "55", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/4w8whmgN/IMG-20250608-142015.jpg"},
+{nombre: "56", categoria: "Anillos", material: "Acero", precio: 0, imagen: "https://i.ibb.co/m5smsLHn/IMG-20250608-143445-1.jpg"},
+  {nombre: "1", categoria: "Cadenas", material: "Acero", precio: 0, imagen: "https://i.ibb.co/jkW0qNzN/IMG-20250608-145055-edit-15571460191558.jpg"},
+{nombre: "2", categoria: "Cadenas", material: "Acero", precio: 0, imagen: "https://i.ibb.co/pgsHnqw/IMG-20250608-144851-edit-15546584652297.jpg"},
+{nombre: "3", categoria: "Cadenas", material: "Acero", precio: 0, imagen: "https://i.ibb.co/bRrSwVnX/IMG-20250608-144411-edit-15403776526570.jpg"},
+  {nombre: "1", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/wr2g94Tm/IMG-20250608-142704-edit-15319354847383.jpg"},
+{nombre: "2", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/BHfkstf6/IMG-20250608-142841.jpg"},
+{nombre: "ee1", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/67dx2n78/IMG-20250608-145232-edit-15586493725146.jpg"},
+{nombre: "4", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Z6Z8nGW7/IMG-20250609-140745.jpg"},
+{nombre: "5", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/VcHHSnk4/IMG-20250609-140611-1.jpg"},
+{nombre: "6", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/C5JB5853/IMG-20250609-140518.jpg"},
+{nombre: "7", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/chmYBtsP/IMG-20250609-140439-1.jpg"},
+{nombre: "8", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/7xx0mXjT/IMG-20250609-131643.jpg"},
+{nombre: "9", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/ycNxjhwf/IMG-20250609-130627-1.jpg"},
+{nombre: "10", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/nsQZPSDc/IMG-20250609-130518-1.jpg"},
+{nombre: "11", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/YBdHYDgS/IMG-20250609-130450.jpg"},
+{nombre: "12", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/q3nYvFMV/IMG-20250609-130427-1.jpg"},
+{nombre: "13", categoria: "Juegos de Dije y Cadena", material: "Acero", precio: 0, imagen: "https://i.ibb.co/CpbmbcYH/IMG-20250609-130341-1.jpg"},
+
+ {nombre: "1", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/LzKd7SCJ/IMG-20250609-130711.jpg"},
+{nombre: "2", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/YTkyKbQx/IMG-20250609-130800-1.jpg"},
+{nombre: "3", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/FbQXyrM1/IMG-20250609-130856-1.jpg"},
+{nombre: "4", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/PzV3Yk9q/IMG-20250609-130934.jpg"},
+{nombre: "5", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/Q3fjHjSb/IMG-20250609-133630-1.jpg"},
+{nombre: "6", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/cXCFHk2N/IMG-20250609-133646.jpg"},
+{nombre: "7", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/zWjbW22c/IMG-20250609-133729.jpg"},
+{nombre: "8", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/S49kkDXx/IMG-20250609-133751.jpg"},
+{nombre: "9", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/pvJ0y65w/IMG-20250609-133828.jpg"},
+{nombre: "10", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/7N2Zny3J/IMG-20250609-133854-1.jpg"},
+{nombre: "11", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/pvCSPwT4/IMG-20250609-133924.jpg"},
+{nombre: "12", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/WN9Dqfzt/IMG-20250609-134023-1.jpg"},
+{nombre: "13", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/LDCr5Tvj/IMG-20250609-140643-1.jpg"},
+{nombre: "14", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/21gdt5Fm/IMG-20250609-140706-1.jpg"},
+{nombre: "15", categoria: "Cadenas", material: "", precio: 0, imagen: "https://i.ibb.co/QFXQqnGM/IMG-20250609-140728.jpg"},
+ {nombre: "1", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/gF9cQL5R/IMG-20250608-145311-1.jpg"},
+{nombre: "2", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/mrbsbB4Z/IMG-20250608-145614-edit-15601932748890.jpg"},
+{nombre: "3", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/zTnyg9GF/IMG-20250608-145641.jpg"},
+{nombre: "4", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/SXQ1DRKy/IMG-20250608-145713-1-edit-15625692251850.jpg"},
+{nombre: "5", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/pvxYmWXj/IMG-20250608-145743-1.jpg"},
+{nombre: "6", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/sJbz49qn/IMG-20250608-145753-1.jpg"},
+{nombre: "7", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/N6H9JSW9/IMG-20250608-145836-1-edit-15648910467466.jpg"},
+{nombre: "8", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/ZRLX0dYP/IMG-20250608-145846-edit-15664682867720.jpg"},
+{nombre: "9", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/5XVH3YPn/IMG-20250608-145914-edit-15691821672502.jpg"},
+{nombre: "10", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/1YFVmjVv/IMG-20250608-145925-1-edit-15702444776821.jpg"},
+{nombre: "11", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/QvTSKJ2R/IMG-20250608-145940.jpg"},
+{nombre: "12", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/GvnSvMR4/IMG-20250608-150006-edit-15718302162283.jpg"},
+{nombre: "13", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/M58MtpGj/IMG-20250608-150037-edit-15748167936855.jpg"},
+{nombre: "14", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Jj69pKsq/IMG-20250608-150055.jpg"},
+{nombre: "15", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/278N5Gt9/IMG-20250608-150130-1-edit-15768512085285.jpg"},
+  
+ {nombre: "13", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/gM03zsHk/IMG-20250609-131843-1-copia.jpg"},
+{nombre: "14", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Nd8zZZmM/IMG-20250609-131843-1.jpg"},
+{nombre: "15", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/1tybjSTq/IMG-20250609-131922-1.jpg"},
+{nombre: "16", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/LXGpMBW0/IMG-20250609-132007-1.jpg"},
+{nombre: "17", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/vxMjkRN1/IMG-20250609-132027-1.jpg"},
+{nombre: "18", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/svVjpf3S/IMG-20250609-132104-1.jpg"},
+{nombre: "19", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/93tMndhd/IMG-20250609-132133-1.jpg"},
+{nombre: "20", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/3mdCb2M5/IMG-20250609-132310.jpg"},
+{nombre: "21", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/q3ynwVqp/IMG-20250609-133122.jpg"},
+{nombre: "22", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/J1xz1c3/IMG-20250609-133210-1.jpg"},
+{nombre: "23", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/GvFGFqf7/IMG-20250609-133254-1.jpg"},
+{nombre: "24", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/MkdZjf5w/IMG-20250609-133406.jpg"},
+{nombre: "25", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/BKQ5fZ7F/IMG-20250609-133429-1.jpg"},
+{nombre: "26", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/fVzmpZTS/IMG-20250609-133520.jpg"},
+{nombre: "27", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/1kT3d6v/IMG-20250609-133554.jpg"},
+
+  {nombre: "1", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/6cYdNV0g/IMG-20250609-135148-1.jpg"},
+  {nombre: "2", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/p6SnwVJG/IMG-20250609-135230-1.jpg"},
+  {nombre: "3", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/8Lz69w8p/IMG-20250609-135255.jpg"},
+  {nombre: "4", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/YFjmv0NW/IMG-20250609-135319.jpg"},
+  {nombre: "5", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/VcgdZzyV/IMG-20250609-135446.jpg"},
+  {nombre: "6", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/jvVStwnS/IMG-20250609-135516.jpg"},
+  {nombre: "7", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/Zp80KsQG/IMG-20250609-135544-1.jpg"},
+  {nombre: "8", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/wF5C3Vt0/IMG-20250609-135602-1.jpg"},
+  {nombre: "9", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/KdHVSdH/IMG-20250609-135625.jpg"},
+  {nombre: "10", categoria: "Pulseras", material: "Acero", precio: 0, imagen: "https://i.ibb.co/tMtDGqFf/IMG-20250609-135645.jpg"},
+  {nombre: "11", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/s9Db7rZ2/IMG-20250609-135040-1.jpg"},
+  {nombre: "12", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/rRBGTMYK/IMG-20250609-135055.jpg"},
+  {nombre: "13", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/JwWc078T/IMG-20250609-135349.jpg"},
+  {nombre: "14", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/MzKMKW0/IMG-20250609-135359-1.jpg"},
+  {nombre: "15", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/fGxyDPys/IMG-20250609-135404-1.jpg"},
+  {nombre: "16", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/XZvYRfZV/IMG-20250609-135418.jpg"},
+  {nombre: "17", categoria: "Aretes", material: "Acero", precio: 0, imagen: "https://i.ibb.co/JjNtTXLX/IMG-20250609-135429.jpg"}
+
+]
+
+
+
+        // Elementos del DOM
+        const joyasGrid = document.querySelector('.joyas-grid');
+        const selectCategoria = document.getElementById('categoria');
+        const selectMaterial = document.getElementById('material');
+        const inputBuscar = document.getElementById('inputBuscar');
+        const btnBuscar = document.getElementById('btnBuscar');
+
+        // Event Listeners para filtros
+        selectCategoria.addEventListener('change', filtrarProductos);
+        selectMaterial.addEventListener('change', filtrarProductos);
+        btnBuscar.addEventListener('click', buscarProductos);
+        inputBuscar.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') buscarProductos();
+        });
+
+        // Funciones de filtrado y búsqueda
+        function buscarProductos() {
+            const terminoBusqueda = inputBuscar.value.trim().toLowerCase();
+            const resultados = terminoBusqueda 
+                ? productos.filter(p => p.nombre.toLowerCase().includes(terminoBusqueda))
+                : productos;
+            renderizarProductos(resultados);
+        }
+
+        function filtrarProductos() {
+            const categoria = selectCategoria.value.toLowerCase();
+            const material = selectMaterial.value.toLowerCase();
+            
+            let filtrados = productos;
+            
+            if (categoria !== 'todas') {
+                filtrados = filtrados.filter(p => p.categoria.toLowerCase() === categoria);
+            }
+            
+            if (material !== 'todos') {
+                filtrados = filtrados.filter(p => p.material.toLowerCase() === material);
+            }
+            
+            renderizarProductos(filtrados);
+        }
+
+        // Renderizado de productos
+        function renderizarProductos(lista = productos) {
+            joyasGrid.innerHTML = lista.map(producto => `
+                <article class="joya-tarjeta">
+                    <img src="${producto.imagen}" alt="${producto.nombre}" class="joya-imagen" 
+                         onerror="this.src='https://via.placeholder.com/300x300?text=Imagen+no+disponible'">
+                    <div class="joya-contenido">
+                        <span class="joya-categoria">${producto.categoria} • ${producto.material}</span>
+                        <h3 class="joya-titulo">${producto.nombre}</h3>
+                        <p class="joya-precio">$${producto.precio.toFixed(2)}</p>
+                       
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Inicializar al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarProductos();
+        });
+    </script>
+</body>
+</html>
